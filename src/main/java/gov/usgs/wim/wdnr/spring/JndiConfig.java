@@ -17,7 +17,7 @@ public class JndiConfig {
 
     @Bean
     public DataSource dataSource() throws Exception {
-        return (DataSource) ctx.lookup("java:comp/env/jdbc/beachhealth_dataDS");
+        return (DataSource) ctx.lookup("java:comp/env/jdbc/wibeaches_services_beachhealth_dataDS");
     }
 
     @Bean
