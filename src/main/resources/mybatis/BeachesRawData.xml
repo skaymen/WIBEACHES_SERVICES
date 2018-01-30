@@ -7,6 +7,7 @@
         beach_dim.county,
         beach_dim.beach_seq,
         beach_dim.beach_name,
+        beach_dim.water_body_type,
         monitor_site_dim.beach_seq,
         monitor_site_dim.monitor_site_seq,
         monitor_site_dim.station_name
