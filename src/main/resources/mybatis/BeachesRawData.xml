@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beachesRawData">
+
+    <select id="select" resultType="java.util.LinkedHashMap" resultOrdered="true" fetchSize="500" >
+        select count (*) over (partition by 1) total_rows,
+        beach_dim.county,
+        beach_dim.beach_seq,
+        beach_dim.beach_name,
+        monitor_site_dim.beach_seq,
+        monitor_site_dim.monitor_site_seq,
+        monitor_site_dim.station_name
+
+        from beach_dim
+        join monitor_site_dim
+        ON
+        beach_dim.beach_seq = monitor_site_dim.beach_seq
+
+        WHERE
+        beach_dim.historical_flag = 'N'  and
+        beach_dim.beach_seq not in (1100,1101) and
+        beach_dim.inland = 'N' and
+        monitor_site_dim.status = 'Y'
+
+
+    </select>
+
+</mapper>
