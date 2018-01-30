@@ -22,12 +22,12 @@ public class JndiConfig {
 
     @Bean
     public String displayHost() throws NamingException {
-        return (String) ctx.lookup("java:comp/env/wdnrServices/displayHost");
+        return (String) ctx.lookup("java:comp/env/wibeachesServices/displayHost");
     }
 
     @Bean
     public String displayPath() throws NamingException {
-        return (String) ctx.lookup("java:comp/env/wdnrServices/displayPath");
+        return (String) ctx.lookup("java:comp/env/wibeachesServices/displayPath");
     }
 
 }

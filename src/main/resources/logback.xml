@@ -8,12 +8,12 @@
 
     <appender name="file"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>${catalina.base}/logs/wdnr-fmdb-services.log</File>
+        <File>${catalina.base}/logs/wibeaches-services.log</File>
         <encoder>
             <pattern>%d{ISO8601} %p %t %c{40}.%M - %m%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${catalina.base}/logs/wdnr-fmdb-services.%d{yyyy-MM-dd}.log
+            <fileNamePattern>${catalina.base}/logs/wibeaches-services.%d{yyyy-MM-dd}.log
             </fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>

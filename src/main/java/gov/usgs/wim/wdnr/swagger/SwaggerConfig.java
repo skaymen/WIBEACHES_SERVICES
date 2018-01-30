@@ -18,6 +18,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 
     public static final String VERSION_TAG_NAME = "Application Version";
+    public static final String BEACHES_RAW_DATA_TAG_NAME = "Beaches Raw Data";
 
     @Autowired
     @Qualifier("displayHost")
@@ -30,7 +31,8 @@ public class SwaggerConfig {
     @Bean
     public Docket servicesApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .tags(new Tag(VERSION_TAG_NAME, VERSION_TAG_NAME)
+                .tags(new Tag(VERSION_TAG_NAME, VERSION_TAG_NAME),
+                    new Tag(BEACHES_RAW_DATA_TAG_NAME, BEACHES_RAW_DATA_TAG_NAME))
                 .protocols(new HashSet<>(Arrays.asList("https")))
                 .host(displayHost)
                 .pathProvider(pathProvider())

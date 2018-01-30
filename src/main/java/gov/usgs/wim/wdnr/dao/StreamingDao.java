@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 public class StreamingDao extends SqlSessionDaoSupport {
 
     public static final String QUERY_SELECT_ID = ".select";
+    public static final String BEACHES_RAW_DATA = "beachesRawData";
 
     @Autowired
     public StreamingDao(SqlSessionFactory sqlSessionFactory) {

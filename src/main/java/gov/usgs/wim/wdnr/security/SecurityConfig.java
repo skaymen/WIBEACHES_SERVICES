@@ -12,17 +12,25 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private DataSource dataSource;
+//    @Autowired
+//    private DataSource dataSource;
+
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth
+//                .jdbcAuthentication()
+//                .dataSource(dataSource)
+//                .usersByUsernameQuery("select user_name, password, active enabled from sh_user_ref where user_name = ?")
+//                .passwordEncoder(NoOpPasswordEncoder.getInstance())
+//                .authoritiesByUsernameQuery("select user_name, user_role authority from sh_user_ref where user_name = ?")
+//        ;
+//    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .jdbcAuthentication()
-                .dataSource(dataSource)
-                .usersByUsernameQuery("select user_name, password, active enabled from sh_user_ref where user_name = ?")
-                .passwordEncoder(NoOpPasswordEncoder.getInstance())
-                .authoritiesByUsernameQuery("select user_name, user_role authority from sh_user_ref where user_name = ?")
+                .inMemoryAuthentication().withUser("username").password("password")
+                .roles("role")
         ;
     }
 
@@ -30,7 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .authorizeRequests().anyRequest().authenticated()
+                .authorizeRequests()
+                .antMatchers("/beachesrawdata", "/swagger-ui.html", "webjars/**", "/swagger-resources/**", "/v2/api-docs").permitAll()
+//                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .and()
