@@ -1,6 +1,8 @@
 package gov.usgs.wim.wdnr.webservice;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,6 +22,7 @@ import gov.usgs.wim.wdnr.swagger.SwaggerConfig;
 import gov.usgs.wim.wdnr.transform.MapToJsonTransformer;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.context.request.WebRequest;
 
 @Api(tags={SwaggerConfig.BEACHES_RAW_DATA_TAG_NAME})
 @RestController
@@ -36,21 +39,32 @@ public class BeachesRawDataController {
 
     @ApiOperation(value="Return Effort Visit Raw Data matching the POSTed criteria.")
     @GetMapping()
-    public void getBeachesRawData(HttpServletResponse response) {
-        try (MapToJsonTransformer transformer = new MapToJsonTransformer(response)) {
-            LOG.trace("start streaming");
-            response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-            ResultHandler<?> handler = new StreamingResultHandler(transformer);
-            streamingDao.stream(StreamingDao.BEACHES_RAW_DATA, handler);
-            transformer.end();
-            LOG.trace("done streaming");
-        } catch (Exception e) {
-            LOG.error(e.getLocalizedMessage());
-            try {
-                response.sendError(HttpStatus.BAD_REQUEST.value(), e.getLocalizedMessage());
-            } catch (IOException verybad) {
-                LOG.error("Couldn't send back bad request:" + verybad.getLocalizedMessage());
+    public void getBeachesRawData(HttpServletResponse response, WebRequest webRequest) {
+        if (!isNotModified(webRequest) ) {
+            try (MapToJsonTransformer transformer = new MapToJsonTransformer(response)) {
+                LOG.trace("start streaming");
+                response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
+                ResultHandler<?> handler = new StreamingResultHandler(transformer);
+                streamingDao.stream(StreamingDao.BEACHES_RAW_DATA, handler);
+                transformer.end();
+                LOG.trace("done streaming");
+            } catch (Exception e) {
+                LOG.error(e.getLocalizedMessage());
+                try {
+                    response.sendError(HttpStatus.BAD_REQUEST.value(), e.getLocalizedMessage());
+                } catch (IOException verybad) {
+                    LOG.error("Couldn't send back bad request:" + verybad.getLocalizedMessage());
+                }
             }
+        }
+    }
+
+    protected boolean isNotModified(WebRequest webRequest) {
+        LocalDateTime lastUpdatedUtc = streamingDao.getLastUpdate(StreamingDao.BEACHES_RAW_DATA);
+        if (null != lastUpdatedUtc) {
+            return webRequest.checkNotModified(lastUpdatedUtc.toInstant(ZoneOffset.UTC).toEpochMilli());
+        } else {
+            return false;
         }
     }
 

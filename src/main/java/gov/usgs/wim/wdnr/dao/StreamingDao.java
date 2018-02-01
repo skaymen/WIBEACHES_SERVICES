@@ -6,6 +6,8 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 //import gov.usgs.wim.wdnr.SurveyFilterParameters;
 
 @Component
@@ -13,6 +15,8 @@ public class StreamingDao extends SqlSessionDaoSupport {
 
     public static final String QUERY_SELECT_ID = ".select";
     public static final String BEACHES_RAW_DATA = "beachesRawData";
+
+    private static final String GET_QUERY = ".getLastUpdate";
 
     @Autowired
     public StreamingDao(SqlSessionFactory sqlSessionFactory) {
@@ -24,6 +28,10 @@ public class StreamingDao extends SqlSessionDaoSupport {
             throw new IllegalArgumentException("A ResultHandler is required for the StreamingDao.stream");
         }
         getSqlSession().select(nameSpace + QUERY_SELECT_ID, handler);
+    }
+
+    public LocalDateTime getLastUpdate(String nameSpace) {
+        return getSqlSession().selectOne(nameSpace + GET_QUERY);
     }
 
 
