@@ -27,7 +27,7 @@
 
     <select id="getLastUpdate" resultType="java.time.LocalDateTime" useCache="false">
 
-        select max(update_date)
+        select max(update_date) update_date
         from (select max(update_date) update_date from monitor_site_dim
         union all
         select max(update_date) update_date from beach_dim)

@@ -38,14 +38,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/beachesrawdata", "/swagger-ui.html", "webjars/**", "/swagger-resources/**", "/v2/api-docs").permitAll()
-//                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .and()
-                .httpBasic()
-                .and()
+//                .authorizeRequests()
+//                .antMatchers("/beachesrawdata", "/swagger-ui.html", "webjars/**", "/swagger-resources/**", "/v2/api-docs", "/favicon.ico").permitAll()
+////                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .and()
+//                .httpBasic()
+//                .and()
                 .requiresChannel().anyRequest().requiresSecure()
         ;
     }

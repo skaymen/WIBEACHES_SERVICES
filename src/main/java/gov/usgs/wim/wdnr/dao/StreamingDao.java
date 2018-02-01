@@ -1,9 +1,13 @@
 package gov.usgs.wim.wdnr.dao;
 
+import gov.usgs.wim.wdnr.webservice.BeachesRawDataController;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;

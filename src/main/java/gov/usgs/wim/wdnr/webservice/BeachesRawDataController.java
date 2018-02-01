@@ -39,7 +39,7 @@ public class BeachesRawDataController {
 
     @ApiOperation(value="Return Effort Visit Raw Data matching the POSTed criteria.")
     @GetMapping()
-    public void getBeachesRawData(HttpServletResponse response, WebRequest webRequest) {
+    public String getBeachesRawData(HttpServletResponse response, WebRequest webRequest) {
         if (!isNotModified(webRequest) ) {
             try (MapToJsonTransformer transformer = new MapToJsonTransformer(response)) {
                 LOG.trace("start streaming");
@@ -57,12 +57,16 @@ public class BeachesRawDataController {
                 }
             }
         }
+        return "";
     }
 
     protected boolean isNotModified(WebRequest webRequest) {
         LocalDateTime lastUpdatedUtc = streamingDao.getLastUpdate(StreamingDao.BEACHES_RAW_DATA);
+        LOG.trace("last update: {}", lastUpdatedUtc);
         if (null != lastUpdatedUtc) {
-            return webRequest.checkNotModified(lastUpdatedUtc.toInstant(ZoneOffset.UTC).toEpochMilli());
+            long x = lastUpdatedUtc.toInstant(ZoneOffset.UTC).toEpochMilli();
+            LOG.trace(String.valueOf(x));
+            return webRequest.checkNotModified(x);
         } else {
             return false;
         }
