@@ -2,12 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="beachesRawData">
 
-    <select id="select" resultType="java.util.LinkedHashMap" resultOrdered="true" fetchSize="500" >
+    <select id="select" resultType="java.util.LinkedHashMap" resultOrdered="true" fetchSize="500" useCache="false" >
         select count (*) over (partition by 1) total_rows,
         beach_dim.county,
         beach_dim.beach_seq,
         beach_dim.beach_name,
         beach_dim.water_body_type,
+        beach_dim.waterbody_name,
         monitor_site_dim.beach_seq,
         monitor_site_dim.monitor_site_seq,
         monitor_site_dim.station_name
@@ -23,6 +24,14 @@
         beach_dim.inland = 'N' and
         monitor_site_dim.status = 'Y'
 
+    </select>
+
+    <select id="getLastUpdate" resultType="java.time.LocalDateTime" useCache="false">
+
+        select max(update_date) update_date
+        from (select max(update_date) update_date from monitor_site_dim
+        union all
+        select max(update_date) update_date from beach_dim)
 
     </select>
 
