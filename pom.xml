@@ -260,6 +260,25 @@
                     </archive>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                <execution>
+                    <id>purge-local-dependencies</id>
+                    <phase>process-sources</phase>
+                    <goals>
+                        <goal>purge-local-repository</goal>
+                    </goals>
+                    <configuration>
+                        <includes>
+                            <include>gov.usgs.wim.wdnr:wibeaches-services</include>
+                        </includes>
+                    </configuration>
+                </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 

@@ -1,6 +1,7 @@
 package gov.usgs.wim.wdnr.webservice;
 
 import gov.usgs.wim.wdnr.dao.StreamingDao;
+import org.apache.ibatis.session.ResultHandler;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -54,20 +55,10 @@ public class BeachesRawDataControllerTest {
     }
 
     @Test
-    public void getBeachesRawDataEmptyTest() {
-//        do something here...
-//        when(controller.isNotModified(new ServletWebRequest(request))).thenReturn(false);
-//        doReturn(true).when(controller).isNotModified(new ServletWebRequest(request));
-        assertEquals("", controller.getBeachesRawData(response, new ServletWebRequest(request)));
-    }
-
-    @Test
     public void getBeachesRawDataStreamingTest() {
-        assertNotEquals("", controller.getBeachesRawData(response, new ServletWebRequest(request)));
-        //assert streaming?
+        controller.getBeachesRawData(response, new ServletWebRequest(request));
+        verify(streamingDao).getLastUpdate(anyString());
+        verify(streamingDao).stream(anyString(), any(ResultHandler.class));
     }
-
-
-
 
 }
