@@ -161,6 +161,11 @@
             <artifactId>snakeyaml</artifactId>
             <version>${snakeyaml-version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.3.5.Final</version>
+        </dependency>
     </dependencies>
 
     <build>
