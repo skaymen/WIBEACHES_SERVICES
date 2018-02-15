@@ -18,7 +18,7 @@ public class MapToJsonTransformer implements ITransformer {
     private static final Logger LOG = LoggerFactory.getLogger(MapToJsonTransformer.class);
 
     static final String TOTAL_ROWS = "total_rows";
-    static final String COUNT_HEADER_NAME = "X-Total-Count";
+    public static final String COUNT_HEADER_NAME = "X-Total-Count";
 
     private OutputStream target;
     private JsonFactory f;
