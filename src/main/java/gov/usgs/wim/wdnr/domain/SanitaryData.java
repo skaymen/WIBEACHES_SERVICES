@@ -1,350 +1,465 @@
-package gov.usgs.wim.wdnr.webservice;
+package gov.usgs.wim.wdnr.domain;
 
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 
 import javax.validation.constraints.Digits;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.cglib.core.Local;
 
 @UniqueKey
-public class BeachesRawData {
+public class SanitaryData {
     private BigInteger id;
 
+    @JsonAlias("user_name") //?
     @Length(min=0, max=50)
     private String userName;
 
-    @Length(min=0, max=10)
+    @JsonAlias("user_id") //?
+    @Digits(integer=10, fraction=0)
     private String userId;
 
+    @JsonAlias("__favorites") //?
     @Length(min=0, max=50)
     private String favorites;
 
+    @JsonAlias("__county") //?
     @Length(min=0, max=50)
     private String county;
 
+    @JsonAlias("__lake") //?
     @Length(min=0, max=50)
     private String lake;
 
+    @JsonAlias("__beach") //?
     @Length(min=0, max=50)
     private String beach;
 
-    @Length(min=0, max=10)
+    @JsonAlias("BEACH_SEQ")
+    @Digits(integer=8, fraction=0)
     private String beachSeq;
 
+    @JsonAlias("__site") //?
     @Length(min=0, max=50)
     private String site;
 
-    @Length(min=0, max=10)
+    @JsonAlias("MONITOR_SITE_SEQ")
+    @Digits(integer=8, fraction=0)
     private String monitorSiteSeq;
 
-    @Length(min=0, max=50)
+    @JsonAlias("ECOLI_SAMPLE_TYPE")
+    @Length(min=0, max=30)
     private String ecoliSampleType;
 
+    @JsonAlias("SAMPLE_DATE_TIME_DISPLAYED") //?
     @Length(min=0, max=50)
     private String sampleDateTimeDisplayed;
 
-    @Length(min=0, max=50)
-    private String sampleDateTime;
+    @JsonAlias("SAMPLE_DATE_TIME")
+    @Basic
+    private LocalDateTime sampleDateTime;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NO_GULLS")
+    @Digits(integer=8, fraction=0)
     private String noGulls;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NO_GEESE")
+    @Digits(integer=8, fraction=0)
     private String noGeese;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NO_DOGS")
+    @Digits(integer=8, fraction=0)
     private String noDogs;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NO_ANIMALS_OTHER")
+    @Digits(integer=8, fraction=0)
     private String noAnimalsOther;
 
+    @JsonAlias("NO_ANIMALS_OTHER_DESC") //??
     @Length(min=0, max=50)
     private String noAnimalsOtherDesc;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NUM_LOONS")
+    @Digits(integer=8, fraction=0)
     private String numLoons;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NUM_HERR_GULLS")
+    @Digits(integer=8, fraction=0)
     private String numHerrGulls;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NUM_RING_GULLS")
+    @Digits(integer=8, fraction=0)
     private String numRingGulls;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NUM_CORMORANTS")
+    @Digits(integer=8, fraction=0)
     private String numCormorants;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NUM_LONGTAIL_DUCKS")
+    @Digits(integer=8, fraction=0)
     private String numLongtailDucks;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NUM_SCOTER")
+    @Digits(integer=8, fraction=0)
     private String numScoter;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NUM_HORN_GREBE")
+    @Digits(integer=8, fraction=0)
     private String numHornGrebe;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NUM_REDNECKED_GREBE")
+    @Digits(integer=8, fraction=0)
     private String numRedneckedGrebe;
 
+    @JsonAlias("NUM_FISH") //???
     @Length(min=0, max=5)
     private String numFish;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NUM_OTHER")
+    @Digits(integer=8, fraction=0)
     private String numOther;
 
+    @JsonAlias("NUM_OTHER_DESC")
     @Length(min=0, max=50)
     private String numOtherDesc;
 
-    @Length(min=0, max=5)
+    @JsonAlias("FLOAT_STREET_LITTER")
+    @Length(min=0, max=1)
     private String floatStreetLitter;
 
-    @Length(min=0, max=5)
+    @JsonAlias("FLOAT_FOOD")
+    @Length(min=0, max=1)
     private String floatFood;
 
-    @Length(min=0, max=5)
+    @JsonAlias("FLOAT_MEDICAL")
+    @Length(min=0, max=1)
     private String floatMedical;
 
-    @Length(min=0, max=5)
+    @JsonAlias("FLOAT_SEWAGE")
+    @Length(min=0, max=1)
     private String floatSewage;
 
-    @Length(min=0, max=5)
+    @JsonAlias("FLOAT_BLDG_MATERIALS")
+    @Length(min=0, max=1)
     private String floatBldgMaterials;
 
-    @Length(min=0, max=5)
+    @JsonAlias("FLOAT_FISHING")
+    @Length(min=0, max=1)
     private String floatFishing;
 
-    @Length(min=0, max=5)
+    @JsonAlias("FLOAT_OTHER")
+    @Length(min=0, max=1)
     private String floatOther;
 
-    @Length(min=0, max=5)
+    @JsonAlias("FLOAT_OTHER_DESC")
+    @Length(min=0, max=50)
     private String floatOtherDesc;
 
-    @Length(min=0, max=5)
+    @JsonAlias("DEBRIS_STREET_LITTER")
+    @Length(min=0, max=1)
     private String debrisStreetLitter;
 
-    @Length(min=0, max=5)
+    @JsonAlias("DEBRIS_FOOD")
+    @Length(min=0, max=1)
     private String debrisFood;
 
-    @Length(min=0, max=5)
+    @JsonAlias("DEBRIS_MEDICAL")
+    @Length(min=0, max=1)
     private String debrisMedical;
 
-    @Length(min=0, max=5)
+    @JsonAlias("DEBRIS_SEWAGE")
+    @Length(min=0, max=1)
     private String debrisSewage;
 
-    @Length(min=0, max=5)
+    @JsonAlias("DEBRIS_BLDG_MATERIALS")
+    @Length(min=0, max=1)
     private String debrisBldgMaterials;
 
-    @Length(min=0, max=5)
+    @JsonAlias("DEBRIS_FISHING")
+    @Length(min=0, max=1)
     private String debrisFishing;
 
-    @Length(min=0, max=5)
+    @JsonAlias("DEBRIS_HOUSEHOLD")
+    @Length(min=0, max=1)
     private String debrisHousehold;
 
-    @Length(min=0, max=5)
+    @JsonAlias("DEBRIS_TAR")
+    @Length(min=0, max=1)
     private String debrisTar;
 
-    @Length(min=0, max=5)
+    @JsonAlias("DEBRIS_OIL")
+    @Length(min=0, max=1)
     private String debrisOil;
 
-    @Length(min=0, max=5)
+    @JsonAlias("DEBRIS_OTHER")
+    @Length(min=0, max=1)
     private String debrisOther;
 
-    @Length(min=0, max=50)
+    @JsonAlias("DEBRIS_OTHER_DESC")
+    @Length(min=0, max=255)
     private String debrisOtherDesc;
 
-    @Length(min=0, max=50)
+    @JsonAlias("DEBRIS_AMOUNT")
+    @Length(min=0, max=30)
     private String debrisAmount;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NO_IN_WATER")
+    @Digits(integer=8, fraction=0)
     private String noInWater;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NUM_OUT_OF_WATER")
+    @Digits(integer=8, fraction=0)
     private String numOutOfWater;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NO_PEOPLE_BOATING")
+    @Digits(integer=8, fraction=0)
     private String noPeopleBoating;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NO_PEOPLE_FISHING")
+    @Digits(integer=8, fraction=0)
     private String noPeopleFishing;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NO_PEOPLE_SURFING")
+    @Digits(integer=8, fraction=0)
     private String noPeopleSurfing;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NO_PEOPLE_WINDSURFING")
+    @Digits(integer=8, fraction=0)
     private String noPeopleWindsurfing;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NUM_PEOPLE_DIVING")
+    @Digits(integer=8, fraction=0)
     private String numPeopleDiving;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NO_PEOPLE_CLAMMING")
+    @Digits(integer=8, fraction=0)
     private String noPeopleClamming;
 
-    @Length(min=0, max=5)
+    @JsonAlias("NO_PEOPLE_OTHER")
+    @Digits(integer=8, fraction=0)
     private String noPeopleOther;
 
+    @JsonAlias("NO_PEOPLE_OTHER_DESC")
     @Length(min=0, max=50)
     private String noPeopleOtherDesc;
 
-    @Length(min=0, max=5)
+    @JsonAlias("AIR_TEMP")
+    @Digits(integer=8, fraction=4)
     private String airTemp;
 
-    @Length(min=0, max=10)
+    @JsonAlias("AIR_UNITS")
+    @Length(min=0, max=1)
     private String airUnits;
 
-    @Length(min=0, max=5)
+    @JsonAlias("WIND_SPEED")
+    @Digits(integer=8, fraction=4)
     private String windSpeed;
 
-    @Length(min=0, max=10)
+    @JsonAlias("WIND_SPEED_UNITS")
+    @Length(min=0, max=30)
     private String windSpeedUnits;
 
-    @Length(min=0, max=5)
+    @JsonAlias("WIND_DIR_DEGREES")
+    @Digits(integer=8, fraction=0)
     private String windDirDegrees;
 
-    @Length(min=0, max=50)
+    @JsonAlias("WIND_DIR_DESC")
+    @Length(min=0, max=30)
     private String windDirDesc;
 
-    @Length(min=0, max=50)
+    @JsonAlias("WEATHER_DES") ///????
+    @Length(min=0, max=30)
     private String weatherDes;
 
-    @Length(min=0, max=50)
+    @JsonAlias("RAINFALL_LAST_EVENT")
+    @Length(min=0, max=5)
     private String rainfallLastEvent;
 
-    @Length(min=0, max=5)
+    @JsonAlias("RAINFALL")
+    @Digits(integer=8, fraction=4)
     private String rainfall;
 
-    @Length(min=0, max=50)
+    @JsonAlias("RAINFALL_UNITS")
+    @Length(min=0, max=30)
     private String rainfallUnits;
 
-    @Length(min=0, max=50)
+    @JsonAlias("RAINFALL_STD_DESC") ////????
+    @Length(min=0, max=60)
     private String rainfallStdDesc;
 
-    @Length(min=0, max=5)
+    @JsonAlias("WAVE_HEIGHT")
+    @Digits(integer=8, fraction=4)
     private String waveHeight;
 
-    @Length(min=0, max=50)
+    @JsonAlias("WAVE_HEIGHT_UNITS")
+    @Length(min=0, max=30)
     private String waveHeightUnits;
 
-    @Length(min=0, max=5)
+    @JsonAlias("EST_ACT_FLAG")
+    @Length(min=0, max=1)
     private String estActFlag;
 
-    @Length(min=0, max=50)
+    @JsonAlias("WAVE_DIRECTION")
+    @Length(min=0, max=10)
     private String waveDirection;
 
-    @Length(min=0, max=50)
+    @JsonAlias("WAVE_CONDITIONS")
+    @Length(min=0, max=30)
     private String waveConditions;
 
-    @Length(min=0, max=50)
+    @JsonAlias("CURRENT_SPEED")
+    @Digits(integer=8, fraction=0)
     private String currentSpeed;
 
-    @Length(min=0, max=50)
+    @JsonAlias("LONGSHORE_CURRENT_UNITS")
+    @Length(min=0, max=30)
     private String longshoreCurrentUnits;
 
-    @Length(min=0, max=50)
+    @JsonAlias("SHORELINE_CURRENT_DIR")
+    @Length(min=0, max=30)
     private String shorelineCurrentDir;
 
-    @Length(min=0, max=5)
+    @JsonAlias("PH")
+    @Digits(integer=5, fraction=2)
     private String pH;
 
-    @Length(min=0, max=10)
+    @JsonAlias("COLOR_CHANGE")
+    @Length(min=0, max=1)
     private String colorChange;
 
+    @JsonAlias("COLOR_DESCRIPTION")
     @Length(min=0, max=50)
     private String colorDescription;
 
+    @JsonAlias("ODOR_DESCRIPTION")
     @Length(min=0, max=50)
     private String odorDescription;
 
+    @JsonAlias("ODOR_OTHER_DESCRIPTION")
     @Length(min=0, max=50)
     private String odorOtherDescription;
 
-    @Length(min=0, max=5)
+    @JsonAlias("AVG_WATER_TEMP")
+    @Digits(integer=7, fraction=2)
     private String avgWaterTemp;
 
+    @JsonAlias("AVG_WATER_TEMP_UNITS")
     @Length(min=0, max=10)
     private String avgWaterTempUnits;
 
-    @Length(min=0, max=50)
+    @JsonAlias("CLARITY_DESC")
+    @Length(min=0, max=30)
     private String clarityDesc;
 
-    @Length(min=0, max=50)
+    @JsonAlias("NTU")
+    @Digits(integer=10, fraction=2)
     private String NTU;
 
-    @Length(min=0, max=5)
+    @JsonAlias("SECCHI_TUBE_CM")
+    @Digits(integer=8, fraction=0)
     private String secchiTubeCm;
 
-    @Length(min=0, max=50)
-    private String algaeNearShore;
+    @JsonAlias("ALGAE_NEARSHORE")
+    @Length(min=0, max=30)
+    private String algaeNearshore;
 
-    @Length(min=0, max=50)
+    @JsonAlias("ALGAE_ON_BEACH")
+    @Length(min=0, max=30)
     private String algaeOnBeach;
 
-    @Length(min=0, max=5)
+    @JsonAlias("ALGAE_TYPE_PERIPHYTON")
+    @Length(min=0, max=1)
     private String algaeTypePeriphyton;
 
-    @Length(min=0, max=5)
+    @JsonAlias("ALGAE_TYPE_GLOBULAR")
+    @Length(min=0, max=1)
     private String algaeTypeGlobular;
 
-    @Length(min=0, max=5)
+    @JsonAlias("ALGAE_TYPE_FREEFLOATING")
+    @Length(min=0, max=1)
     private String algaeTypeFreefloating;
 
-    @Length(min=0, max=5)
+    @JsonAlias("ALGAE_TYPE_OTHER")
+    @Length(min=0, max=1)
     private String algaeTypeOther;
 
+    @JsonAlias("ALGAE_TYPE_OTHER_DESC")
     @Length(min=0, max=50)
     private String algaeTypeOtherDesc;
 
-    @Length(min=0, max=5)
+    @JsonAlias("ALGAE_COLOR_LT_GREEN")
+    @Length(min=0, max=1)
     private String algaeColorLtGreen;
 
-    @Length(min=0, max=5)
+    @JsonAlias("ALGAE_COLOR_BRGHT_GREEN") ////????
+    @Length(min=0, max=1)
     private String algaeColorBrightGreen;
 
-    @Length(min=0, max=5)
+    @JsonAlias("ALGAE_COLOR_DRK_GREEN")
+    @Length(min=0, max=1)
     private String algaeColorDrkGreen;
 
-    @Length(min=0, max=5)
+    @JsonAlias("ALGAE_COLOR_YELLOW")
+    @Length(min=0, max=1)
     private String algaeColorYellow;
 
-    @Length(min=0, max=5)
+    @JsonAlias("ALGAE_COLOR_BROWN")
+    @Length(min=0, max=1)
     private String algaeColorBrown;
 
-    @Length(min=0, max=5)
+    @JsonAlias("ALGAE_COLOR_OTHER")
+    @Length(min=0, max=1)
     private String algaeColorOther;
 
+    @JsonAlias("ALGAE_COLOR_OTHER_DESC")
     @Length(min=0, max=50)
     private String algaeColorOtherDesc;
 
-    @Length(min=0, max=50)
+    @JsonAlias("PART_1_COMMENTS")
+    @Length(min=0, max=1000) ///???
     private String part1Comments;
 
-    @Length(min=0, max=50)
-    private String part2Coments;
+    @JsonAlias("PART_2_COMMENTS")
+    @Length(min=0, max=1000) ///???
+    private String part2Comments;
 
-    @Length(min=0, max=50)
+    @JsonAlias("PART_3_COMMENTS")
+    @Length(min=0, max=1000) ///???
     private String part3Comments;
 
-    @Length(min=0, max=50)
+    @JsonAlias("PART_4_COMMENTS")
+    @Length(min=0, max=1000) ///???
     private String part4Comments;
 
-    @Length(min=0, max=10)
-    private String dateEntered;
+    @JsonAlias("DATE_ENTERED")
+    @Basic
+    private LocalDateTime dateEntered;
 
-    @Length(min=0, max=10)
-    private String dateUpdated;
+    @JsonAlias("DATE_UPDATED")
+    @Basic
+    private LocalDateTime dateUpdated;
 
-    @Length(min=0, max=5)
+    @JsonAlias("MISSING_REQUIRED_FLAG")
+    @Length(min=0, max=1)
     private String missingRequiredFlag;
 
+    @JsonAlias("vPages") /////???
     @Length(min=0, max=50)
     private String vPages;
 
+    @JsonAlias("submitted") ///????
     @Length(min=0, max=5)
     private String submitted;
 
+    @JsonAlias("id")
     @Length(min=0, max=10)
     private String idNo;
 
-    @Length(min=0, max=10)
-    private String date;
+    @JsonAlias("date")
+    @Basic
+    private LocalDateTime date;
 
     public void setUserName(String userName) {
         this.userName = userName;
@@ -390,7 +505,7 @@ public class BeachesRawData {
         this.sampleDateTimeDisplayed = sampleDateTimeDisplayed;
     }
 
-    public void setSampleDateTime(String sampleDateTime) {
+    public void setSampleDateTime(LocalDateTime sampleDateTime) {
         this.sampleDateTime = sampleDateTime;
     }
 
@@ -695,7 +810,7 @@ public class BeachesRawData {
     }
 
     public void setAlgaeNearShore(String algaeNearShore) {
-        this.algaeNearShore = algaeNearShore;
+        this.algaeNearshore = algaeNearShore;
     }
 
     public void setAlgaeOnBeach(String algaeOnBeach) {
@@ -754,8 +869,8 @@ public class BeachesRawData {
         this.part1Comments = part1Comments;
     }
 
-    public void setPart2Coments(String part2Coments) {
-        this.part2Coments = part2Coments;
+    public void setPart2Coments(String part2Comments) {
+        this.part2Comments = part2Comments;
     }
 
     public void setPart3Comments(String part3Comments) {
@@ -766,11 +881,11 @@ public class BeachesRawData {
         this.part4Comments = part4Comments;
     }
 
-    public void setDateEntered(String dateEntered) {
+    public void setDateEntered(LocalDateTime dateEntered) {
         this.dateEntered = dateEntered;
     }
 
-    public void setDateUpdated(String dateUpdated) {
+    public void setDateUpdated(LocalDateTime dateUpdated) {
         this.dateUpdated = dateUpdated;
     }
 
@@ -790,9 +905,458 @@ public class BeachesRawData {
         this.idNo = idNo;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public String getFavorites() {
+        return favorites;
+    }
+
+    public String getCounty() {
+        return county;
+    }
+
+    public String getLake() {
+        return lake;
+    }
+
+    public String getBeach() {
+        return beach;
+    }
+
+    public String getBeachSeq() {
+        return beachSeq;
+    }
+
+    public String getSite() {
+        return site;
+    }
+
+    public String getMonitorSiteSeq() {
+        return monitorSiteSeq;
+    }
+
+    public String getEcoliSampleType() {
+        return ecoliSampleType;
+    }
+
+    public String getSampleDateTimeDisplayed() {
+        return sampleDateTimeDisplayed;
+    }
+
+    public LocalDateTime getSampleDateTime() {
+        return sampleDateTime;
+    }
+
+    public String getNoGulls() {
+        return noGulls;
+    }
+
+    public String getNoGeese() {
+        return noGeese;
+    }
+
+    public String getNoDogs() {
+        return noDogs;
+    }
+
+    public String getNoAnimalsOther() {
+        return noAnimalsOther;
+    }
+
+    public String getNoAnimalsOtherDesc() {
+        return noAnimalsOtherDesc;
+    }
+
+    public String getNumLoons() {
+        return numLoons;
+    }
+
+    public String getNumHerrGulls() {
+        return numHerrGulls;
+    }
+
+    public String getNumRingGulls() {
+        return numRingGulls;
+    }
+
+    public String getNumCormorants() {
+        return numCormorants;
+    }
+
+    public String getNumLongtailDucks() {
+        return numLongtailDucks;
+    }
+
+    public String getNumScoter() {
+        return numScoter;
+    }
+
+    public String getNumHornGrebe() {
+        return numHornGrebe;
+    }
+
+    public String getNumRedneckedGrebe() {
+        return numRedneckedGrebe;
+    }
+
+    public String getNumFish() {
+        return numFish;
+    }
+
+    public String getNumOther() {
+        return numOther;
+    }
+
+    public String getNumOtherDesc() {
+        return numOtherDesc;
+    }
+
+    public String getFloatStreetLitter() {
+        return floatStreetLitter;
+    }
+
+    public String getFloatFood() {
+        return floatFood;
+    }
+
+    public String getFloatMedical() {
+        return floatMedical;
+    }
+
+    public String getFloatSewage() {
+        return floatSewage;
+    }
+
+    public String getFloatBldgMaterials() {
+        return floatBldgMaterials;
+    }
+
+    public String getFloatFishing() {
+        return floatFishing;
+    }
+
+    public String getFloatOther() {
+        return floatOther;
+    }
+
+    public String getFloatOtherDesc() {
+        return floatOtherDesc;
+    }
+
+    public String getDebrisStreetLitter() {
+        return debrisStreetLitter;
+    }
+
+    public String getDebrisFood() {
+        return debrisFood;
+    }
+
+    public String getDebrisMedical() {
+        return debrisMedical;
+    }
+
+    public String getDebrisSewage() {
+        return debrisSewage;
+    }
+
+    public String getDebrisBldgMaterials() {
+        return debrisBldgMaterials;
+    }
+
+    public String getDebrisFishing() {
+        return debrisFishing;
+    }
+
+    public String getDebrisHousehold() {
+        return debrisHousehold;
+    }
+
+    public String getDebrisTar() {
+        return debrisTar;
+    }
+
+    public String getDebrisOil() {
+        return debrisOil;
+    }
+
+    public String getDebrisOther() {
+        return debrisOther;
+    }
+
+    public String getDebrisOtherDesc() {
+        return debrisOtherDesc;
+    }
+
+    public String getDebrisAmount() {
+        return debrisAmount;
+    }
+
+    public String getNoInWater() {
+        return noInWater;
+    }
+
+    public String getNumOutOfWater() {
+        return numOutOfWater;
+    }
+
+    public String getNoPeopleBoating() {
+        return noPeopleBoating;
+    }
+
+    public String getNoPeopleFishing() {
+        return noPeopleFishing;
+    }
+
+    public String getNoPeopleSurfing() {
+        return noPeopleSurfing;
+    }
+
+    public String getNoPeopleWindsurfing() {
+        return noPeopleWindsurfing;
+    }
+
+    public String getNumPeopleDiving() {
+        return numPeopleDiving;
+    }
+
+    public String getNoPeopleClamming() {
+        return noPeopleClamming;
+    }
+
+    public String getNoPeopleOther() {
+        return noPeopleOther;
+    }
+
+    public String getNoPeopleOtherDesc() {
+        return noPeopleOtherDesc;
+    }
+
+    public String getAirTemp() {
+        return airTemp;
+    }
+
+    public String getAirUnits() {
+        return airUnits;
+    }
+
+    public String getWindSpeed() {
+        return windSpeed;
+    }
+
+    public String getWindSpeedUnits() {
+        return windSpeedUnits;
+    }
+
+    public String getWindDirDegrees() {
+        return windDirDegrees;
+    }
+
+    public String getWindDirDesc() {
+        return windDirDesc;
+    }
+
+    public String getWeatherDes() {
+        return weatherDes;
+    }
+
+    public String getRainfallLastEvent() {
+        return rainfallLastEvent;
+    }
+
+    public String getRainfall() {
+        return rainfall;
+    }
+
+    public String getRainfallUnits() {
+        return rainfallUnits;
+    }
+
+    public String getRainfallStdDesc() {
+        return rainfallStdDesc;
+    }
+
+    public String getWaveHeight() {
+        return waveHeight;
+    }
+
+    public String getWaveHeightUnits() {
+        return waveHeightUnits;
+    }
+
+    public String getEstActFlag() {
+        return estActFlag;
+    }
+
+    public String getWaveDirection() {
+        return waveDirection;
+    }
+
+    public String getWaveConditions() {
+        return waveConditions;
+    }
+
+    public String getCurrentSpeed() {
+        return currentSpeed;
+    }
+
+    public String getLongshoreCurrentUnits() {
+        return longshoreCurrentUnits;
+    }
+
+    public String getShorelineCurrentDir() {
+        return shorelineCurrentDir;
+    }
+
+    public String getpH() {
+        return pH;
+    }
+
+    public String getColorChange() {
+        return colorChange;
+    }
+
+    public String getColorDescription() {
+        return colorDescription;
+    }
+
+    public String getOdorDescription() {
+        return odorDescription;
+    }
+
+    public String getOdorOtherDescription() {
+        return odorOtherDescription;
+    }
+
+    public String getAvgWaterTemp() {
+        return avgWaterTemp;
+    }
+
+    public String getAvgWaterTempUnits() {
+        return avgWaterTempUnits;
+    }
+
+    public String getClarityDesc() {
+        return clarityDesc;
+    }
+
+    public String getNTU() {
+        return NTU;
+    }
+
+    public String getSecchiTubeCm() {
+        return secchiTubeCm;
+    }
+
+    public String getAlgaeNearshore() {
+        return algaeNearshore;
+    }
+
+    public String getAlgaeOnBeach() {
+        return algaeOnBeach;
+    }
+
+    public String getAlgaeTypePeriphyton() {
+        return algaeTypePeriphyton;
+    }
+
+    public String getAlgaeTypeGlobular() {
+        return algaeTypeGlobular;
+    }
+
+    public String getAlgaeTypeFreefloating() {
+        return algaeTypeFreefloating;
+    }
+
+    public String getAlgaeTypeOther() {
+        return algaeTypeOther;
+    }
+
+    public String getAlgaeTypeOtherDesc() {
+        return algaeTypeOtherDesc;
+    }
+
+    public String getAlgaeColorLtGreen() {
+        return algaeColorLtGreen;
+    }
+
+    public String getAlgaeColorBrightGreen() {
+        return algaeColorBrightGreen;
+    }
+
+    public String getAlgaeColorDrkGreen() {
+        return algaeColorDrkGreen;
+    }
+
+    public String getAlgaeColorYellow() {
+        return algaeColorYellow;
+    }
+
+    public String getAlgaeColorBrown() {
+        return algaeColorBrown;
+    }
+
+    public String getAlgaeColorOther() {
+        return algaeColorOther;
+    }
+
+    public String getAlgaeColorOtherDesc() {
+        return algaeColorOtherDesc;
+    }
+
+    public String getPart1Comments() {
+        return part1Comments;
+    }
+
+    public String getPart2Comments() {
+        return part2Comments;
+    }
+
+    public String getPart3Comments() {
+        return part3Comments;
+    }
+
+    public String getPart4Comments() {
+        return part4Comments;
+    }
+
+    public LocalDateTime getDateEntered() {
+        return dateEntered;
+    }
+
+    public LocalDateTime getDateUpdated() {
+        return dateUpdated;
+    }
+
+    public String getMissingRequiredFlag() {
+        return missingRequiredFlag;
+    }
+
+    public String getvPages() {
+        return vPages;
+    }
+
+    public String getSubmitted() {
+        return submitted;
+    }
+
+    public String getIdNo() {
+        return idNo;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
 
 
 

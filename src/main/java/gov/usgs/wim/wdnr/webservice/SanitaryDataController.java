@@ -2,17 +2,13 @@ package gov.usgs.wim.wdnr.webservice;
 
 import java.io.IOException;
 import java.math.BigInteger;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import gov.usgs.wim.wdnr.dao.StreamingDao;
-import gov.usgs.wim.wdnr.webservice.BeachesRawData;
+import gov.usgs.wim.wdnr.domain.SanitaryData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,14 +16,12 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.NumberUtils;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
@@ -35,7 +29,7 @@ import io.swagger.annotations.Api;
 @Api(tags={"Legacy Monitoring Locations"})
 @RestController
 @RequestMapping("/monitoringLocations")
-public class Controller {
+public class SanitaryDataController {
 
     @Autowired
     private StreamingDao sDao;
@@ -48,14 +42,14 @@ public class Controller {
     public static final String COUNTY = "Dane";
 
 //    @GetMapping()
-//    public BeachesRawData getBeachesRawData(
+//    public SanitaryData getBeachesRawData(
 //            @RequestParam(name = USER_ID) String userId,
 //            @RequestParam(name = FAVORITES) String favorites,
 //            HttpServletResponse response) {
 //        Map<String, Object> params = new HashMap<>();
 //        params.put(USER_ID, userId);
 //        params.put(FAVORITES, favorites);
-//        BeachesRawData brd = sDao.getByAK(params);
+//        SanitaryData brd = sDao.getByAK(params);
 //        if (null == brd) {
 //            response.setStatus(HttpStatus.NOT_FOUND.value());
 //        }
@@ -71,62 +65,44 @@ public class Controller {
 //        return ml;
 //    }
 
-    @PreAuthorize("hasPermission(#ml, null)")
+    @PreAuthorize("hasPermission(#sd, null)")
     @PostMapping()
-    public MonitoringLocation createMonitoringLocation(@RequestBody MonitoringLocation ml, HttpServletResponse response) throws IOException {
-        ml.setCreatedBy(getUsername());
-        ml.setUpdatedBy(getUsername());
-        if (validator.validate(ml).isEmpty()) {
-            BigInteger newId = mLDao.create(ml);
+    public SanitaryData createSanitaryData(@RequestBody SanitaryData sd, HttpServletResponse response) throws IOException {
+        sd.setCreatedBy(getUsername());//?
+        sd.setUpdatedBy(getUsername());//?
+        if (validator.validate(sd).isEmpty()) {
+            BigInteger newId = sDao.create(sd); //?
 
             response.setStatus(HttpStatus.CREATED.value());
-            return mLDao.getById(newId);
+            return sDao.getById(newId); //?
         } else {
             response.sendError(406, "Invalid data submitted to CRU.");
             return null;
         }
     }
 
-    @PreAuthorize("hasPermission(#ml, null)")
+    @PreAuthorize("hasPermission(#sd, null)")
     @PutMapping("/{id}")
-    public MonitoringLocation updateMonitoringLocation(@PathVariable("id") String id, @RequestBody MonitoringLocation ml,
+    public SanitaryData updateMonitoringLocation(@PathVariable("id") String id, @RequestBody SanitaryData sd,
                                                        HttpServletResponse response) throws IOException {
         BigInteger idInt = NumberUtils.parseNumber(id, BigInteger.class);
 
-        if (null == mLDao.getById(idInt)) {
+        if (null == sDao.getById(idInt)) {
             response.setStatus(HttpStatus.NOT_FOUND.value());
         }
         else {
-            ml.setId(idInt);
-            ml.setUpdatedBy(getUsername());
-            if (validator.validate(ml).isEmpty()) {
-                mLDao.update(ml);
+            sd.setId(idInt);
+            sdsetUpdatedBy(getUsername());
+            if (validator.validate(sd).isEmpty()) {
+                sDao.update(sd);
             } else {
                 response.sendError(406, "Invalid data submitted to CRU.");
                 return null;
             }
         }
-        return mLDao.getById(idInt);
+        return sDao.getById(idInt);
     }
 
-    @PreAuthorize("hasPermission(#ml, null)")
-    @PatchMapping()
-    public MonitoringLocation patchMonitoringLocation(@RequestBody Map<String, Object> ml, HttpServletResponse response) throws IOException {
-        ml.put(UPDATED_BY, getUsername());
-        if (validator.validate(ml).isEmpty()) {
-            mLDao.patch(ml);
-            MonitoringLocation location = mLDao.getByAK(ml);
-            if (location == null) {
-                response.setStatus(HttpStatus.NOT_FOUND.value());
-                return null;
-            } else {
-                return location;
-            }
-        } else {
-            response.sendError(406, "Invalid data submitted to CRU.");
-            return null;
-        }
-    }
 
     protected String getUsername() {
         String username = UNKNOWN_USERNAME;
