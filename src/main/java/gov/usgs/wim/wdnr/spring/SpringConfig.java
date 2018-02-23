@@ -3,6 +3,7 @@ package gov.usgs.wim.wdnr.spring;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.util.AntPathMatcher;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
@@ -32,6 +33,11 @@ public class SpringConfig implements WebMvcConfigurer {
         registry.addResourceHandler("swagger-ui.html", "webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/", "classpath:/META-INF/resources/webjars/");
         registry.setOrder(-1);
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**").allowedMethods("GET", "OPTIONS");
     }
 
 }
