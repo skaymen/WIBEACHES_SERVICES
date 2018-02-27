@@ -4,14 +4,18 @@ import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.cglib.core.Local;
 
-@UniqueKey
+//@UniqueKey //TODO MONITOR_SITE_SEQ and SAMPLE_DATE_TIME must be unique
+
+//@Parent //TODO UPDATE_ENTRY_SEQ, DATA_ENTRY_SEQ, ANALYZER_SEQ, SAMPLER_SEQ
 public class SanitaryData {
-    private BigInteger id;
+
+    private BigInteger id; //probably what we will use for primary key
 
     @JsonAlias("user_name") //?
     @Length(min=0, max=50)
@@ -39,6 +43,7 @@ public class SanitaryData {
 
     @JsonAlias("BEACH_SEQ")
     @Digits(integer=8, fraction=0)
+    @NotNull
     private String beachSeq;
 
     @JsonAlias("__site") //?
@@ -58,7 +63,8 @@ public class SanitaryData {
     private String sampleDateTimeDisplayed;
 
     @JsonAlias("SAMPLE_DATE_TIME")
-    @Basic
+//    @Temporal(TemporalType.DATE) //TODO: Fix this
+    @NotNull
     private LocalDateTime sampleDateTime;
 
     @JsonAlias("NO_GULLS")
@@ -114,7 +120,7 @@ public class SanitaryData {
     private String numRedneckedGrebe;
 
     @JsonAlias("NUM_FISH") //???
-    @Length(min=0, max=5)
+    @Digits(integer=8, fraction=0)
     private String numFish;
 
     @JsonAlias("NUM_OTHER")
@@ -434,11 +440,12 @@ public class SanitaryData {
     private String part4Comments;
 
     @JsonAlias("DATE_ENTERED")
-    @Basic
+//    @Basic //TODO
+    @NotNull
     private LocalDateTime dateEntered;
 
     @JsonAlias("DATE_UPDATED")
-    @Basic
+//    @Basic //TODO
     private LocalDateTime dateUpdated;
 
     @JsonAlias("MISSING_REQUIRED_FLAG")
@@ -458,8 +465,12 @@ public class SanitaryData {
     private String idNo;
 
     @JsonAlias("date")
-    @Basic
+//    @Basic //TODO
     private LocalDateTime date;
+
+    public void setId(BigInteger id) {
+        this.id = id;
+    }
 
     public void setUserName(String userName) {
         this.userName = userName;
@@ -908,6 +919,8 @@ public class SanitaryData {
     public void setDate(LocalDateTime date) {
         this.date = date;
     }
+
+    public BigInteger getId() { return id; }
 
     public String getUserName() {
         return userName;

@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 
 import javax.sql.DataSource;
 
+import gov.usgs.wim.wdnr.domain.SanitaryData;
 import org.apache.ibatis.type.TypeAliasRegistry;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,7 @@ public class MybatisConfig {
 
     private void registerAliases(TypeAliasRegistry registry) {
         registry.registerAlias(LINKED_HASH_MAP_ALIAS, LinkedHashMap.class);
+        registry.registerAlias("SanitaryData", SanitaryData.class);
     }
 
 }

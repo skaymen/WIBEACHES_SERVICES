@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Validator;
 
+import gov.usgs.wim.wdnr.dao.SanitaryDataDao;
 import gov.usgs.wim.wdnr.dao.StreamingDao;
 import gov.usgs.wim.wdnr.domain.SanitaryData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,79 +33,35 @@ import io.swagger.annotations.Api;
 public class SanitaryDataController {
 
     @Autowired
-    private StreamingDao sDao;
-    @Autowired
-    private Validator validator;
+    private SanitaryDataDao sDao;
+//    @Autowired
+//    private Validator validator;
 
     public static final String UNKNOWN_USERNAME = "unknown ";
-    public static final String USER_ID = "john";
-    public static final String FAVORITES = "this one";
-    public static final String COUNTY = "Dane";
-
-//    @GetMapping()
-//    public SanitaryData getBeachesRawData(
-//            @RequestParam(name = USER_ID) String userId,
-//            @RequestParam(name = FAVORITES) String favorites,
-//            HttpServletResponse response) {
-//        Map<String, Object> params = new HashMap<>();
-//        params.put(USER_ID, userId);
-//        params.put(FAVORITES, favorites);
-//        SanitaryData brd = sDao.getByAK(params);
-//        if (null == brd) {
-//            response.setStatus(HttpStatus.NOT_FOUND.value());
-//        }
-//        return brd;
-//    }
-//
-//    @GetMapping("/{id}")
-//    public MonitoringLocation getMonitoringLocation(@PathVariable("id") String id, HttpServletResponse response) {
-//        MonitoringLocation ml = mLDao.getById(NumberUtils.parseNumber(id, BigInteger.class));
-//        if (null == ml) {
-//            response.setStatus(HttpStatus.NOT_FOUND.value());
-//        }
-//        return ml;
-//    }
+//    public static final String USER_ID = "john";
+//    public static final String FAVORITES = "this one";
+//    public static final String COUNTY = "Dane";
 
     @PreAuthorize("hasPermission(#sd, null)")
     @PostMapping()
     public SanitaryData createSanitaryData(@RequestBody SanitaryData sd, HttpServletResponse response) throws IOException {
-        sd.setCreatedBy(getUsername());//?
-        sd.setUpdatedBy(getUsername());//?
-        if (validator.validate(sd).isEmpty()) {
-            BigInteger newId = sDao.create(sd); //?
+//        sd.setCreatedBy(getUsername());//?
+//        sd.setUpdatedBy(getUsername());//?
+//        if (validator.validate(sd).isEmpty()) {
+            BigInteger newId = sDao.create(sd); //? //add this method to new dao, similar to ML but only with create at this point
 
             response.setStatus(HttpStatus.CREATED.value());
-            return sDao.getById(newId); //?
-        } else {
-            response.sendError(406, "Invalid data submitted to CRU.");
             return null;
-        }
-    }
-
-    @PreAuthorize("hasPermission(#sd, null)")
-    @PutMapping("/{id}")
-    public SanitaryData updateMonitoringLocation(@PathVariable("id") String id, @RequestBody SanitaryData sd,
-                                                       HttpServletResponse response) throws IOException {
-        BigInteger idInt = NumberUtils.parseNumber(id, BigInteger.class);
-
-        if (null == sDao.getById(idInt)) {
-            response.setStatus(HttpStatus.NOT_FOUND.value());
-        }
-        else {
-            sd.setId(idInt);
-            sdsetUpdatedBy(getUsername());
-            if (validator.validate(sd).isEmpty()) {
-                sDao.update(sd);
-            } else {
-                response.sendError(406, "Invalid data submitted to CRU.");
-                return null;
-            }
-        }
-        return sDao.getById(idInt);
+//            return sDao.getById(newId); //? //ONLY NEEDED IF we are going to echo back data-- Ask Alice
+//        }
+//        else {
+//            response.sendError(406, "Invalid data submitted to CRU.");
+//            return null;
+//        }
     }
 
 
-    protected String getUsername() {
+    protected String getUsername() { //ask alice if we are going to get username / save any of this information
         String username = UNKNOWN_USERNAME;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (null != authentication && !(authentication instanceof AnonymousAuthenticationToken)) {
