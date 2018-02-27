@@ -1,5 +1,6 @@
 package gov.usgs.wim.wdnr.spring;
 
+import org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -37,6 +38,18 @@ public class SpringConfig implements WebMvcConfigurer {
         registry.addResourceHandler("swagger-ui.html", "webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/", "classpath:/META-INF/resources/webjars/");
         registry.setOrder(-1);
+    }
+
+    @Bean
+    public ResourceBundleMessageInterpolator messageInterpolator() {
+        return new ResourceBundleMessageInterpolator();
+    }
+
+    @Bean
+    public LocalValidatorFactoryBean validator() {
+        LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
+        validator.setMessageInterpolator(messageInterpolator());
+        return validator;
     }
 
 

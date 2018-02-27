@@ -7,15 +7,17 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.cglib.core.Local;
 
 //@UniqueKey //TODO MONITOR_SITE_SEQ and SAMPLE_DATE_TIME must be unique
 
 //@Parent //TODO UPDATE_ENTRY_SEQ, DATA_ENTRY_SEQ, ANALYZER_SEQ, SAMPLER_SEQ
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SanitaryData {
 
-    private BigInteger id; //probably what we will use for primary key
+    private String id; //probably what we will use for primary key
 
     @JsonAlias("user_name") //?
     @Length(min=0, max=50)
@@ -468,7 +470,7 @@ public class SanitaryData {
 //    @Basic //TODO
     private LocalDateTime date;
 
-    public void setId(BigInteger id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -920,7 +922,7 @@ public class SanitaryData {
         this.date = date;
     }
 
-    public BigInteger getId() { return id; }
+    public String getId() { return id; }
 
     public String getUserName() {
         return userName;
