@@ -20,7 +20,7 @@
         <slf4j-version>1.7.25</slf4j-version>
         <snakeyaml-version>1.19</snakeyaml-version>
         <springfox-version>2.7.0</springfox-version>
-        <spring-version>5.0.1.RELEASE</spring-version>
+        <spring-version>5.0.2.RELEASE</spring-version>
     </properties>
 
     <ciManagement>
@@ -242,6 +242,25 @@
                         </manifestEntries>
                     </archive>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                <execution>
+                    <id>purge-local-dependencies</id>
+                    <phase>process-sources</phase>
+                    <goals>
+                        <goal>purge-local-repository</goal>
+                    </goals>
+                    <configuration>
+                        <includes>
+                            <include>gov.usgs.wim.wdnr:wibeaches-services</include>
+                        </includes>
+                    </configuration>
+                </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
