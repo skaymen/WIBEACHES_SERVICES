@@ -2,11 +2,16 @@ package gov.usgs.wim.wdnr.domain;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.validator.constraints.Length;
@@ -17,6 +22,8 @@ import org.springframework.cglib.core.Local;
 //@Parent //TODO UPDATE_ENTRY_SEQ, DATA_ENTRY_SEQ, ANALYZER_SEQ, SAMPLER_SEQ
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SanitaryData {
+
+    protected ValidationResults validationErrors;
 
     @JsonView(Views.Response.class)
     private String id; //probably what we will use for primary key
@@ -136,75 +143,57 @@ public class SanitaryData {
     private String numOtherDesc;
 
     @JsonAlias("FLOAT_STREET_LITTER")
-    @Length(min=0, max=1)
     private Boolean floatStreetLitter;
 
     @JsonAlias("FLOAT_FOOD")
-    @Length(min=0, max=1)
     private Boolean floatFood;
 
     @JsonAlias("FLOAT_MEDICAL")
-    @Length(min=0, max=1)
     private Boolean floatMedical;
 
     @JsonAlias("FLOAT_SEWAGE")
-    @Length(min=0, max=1)
     private Boolean floatSewage;
 
     @JsonAlias("FLOAT_BLDG_MATERIALS")
-    @Length(min=0, max=1)
     private Boolean floatBldgMaterials;
 
     @JsonAlias("FLOAT_FISHING")
-    @Length(min=0, max=1)
     private Boolean floatFishing;
 
     @JsonAlias("FLOAT_OTHER")
-    @Length(min=0, max=1)
     private Boolean floatOther;
 
     @JsonAlias("FLOAT_OTHER_DESC")
-    @Length(min=0, max=50)
     private Boolean floatOtherDesc;
 
     @JsonAlias("DEBRIS_STREET_LITTER")
-    @Length(min=0, max=1)
     private Boolean debrisStreetLitter;
 
     @JsonAlias("DEBRIS_FOOD")
-    @Length(min=0, max=1)
     private Boolean debrisFood;
 
     @JsonAlias("DEBRIS_MEDICAL")
-    @Length(min=0, max=1)
     private Boolean debrisMedical;
 
     @JsonAlias("DEBRIS_SEWAGE")
-    @Length(min=0, max=1)
     private Boolean debrisSewage;
 
     @JsonAlias("DEBRIS_BLDG_MATERIALS")
-    @Length(min=0, max=1)
     private Boolean debrisBldgMaterials;
 
     @JsonAlias("DEBRIS_FISHING")
-    @Length(min=0, max=1)
     private Boolean debrisFishing;
 
     @JsonAlias("DEBRIS_HOUSEHOLD")
-    @Length(min=0, max=1)
     private Boolean debrisHousehold;
 
     @JsonAlias("DEBRIS_TAR")
-    @Length(min=0, max=1)
     private Boolean debrisTar;
 
     @JsonAlias("DEBRIS_OIL")
-    @Length(min=0, max=1)
     private Boolean debrisOil;
 
     @JsonAlias("DEBRIS_OTHER")
-    @Length(min=0, max=1)
     private Boolean debrisOther;
 
     @JsonAlias("DEBRIS_OTHER_DESC")
@@ -336,7 +325,6 @@ public class SanitaryData {
     private String pH;
 
     @JsonAlias("COLOR_CHANGE")
-    @Length(min=0, max=1)
     private Boolean colorChange;
 
     @JsonAlias("COLOR_DESCRIPTION")
@@ -380,19 +368,15 @@ public class SanitaryData {
     private String algaeOnBeach;
 
     @JsonAlias("ALGAE_TYPE_PERIPHYTON")
-    @Length(min=0, max=1)
     private Boolean algaeTypePeriphyton;
 
     @JsonAlias("ALGAE_TYPE_GLOBULAR")
-    @Length(min=0, max=1)
     private Boolean algaeTypeGlobular;
 
     @JsonAlias("ALGAE_TYPE_FREEFLOATING")
-    @Length(min=0, max=1)
     private Boolean algaeTypeFreefloating;
 
     @JsonAlias("ALGAE_TYPE_OTHER")
-    @Length(min=0, max=1)
     private Boolean algaeTypeOther;
 
     @JsonAlias("ALGAE_TYPE_OTHER_DESC")
@@ -400,27 +384,21 @@ public class SanitaryData {
     private String algaeTypeOtherDesc;
 
     @JsonAlias("ALGAE_COLOR_LT_GREEN")
-    @Length(min=0, max=1)
     private Boolean algaeColorLtGreen;
 
     @JsonAlias("ALGAE_COLOR_BRGHT_GREEN") ////????
-    @Length(min=0, max=1)
     private Boolean algaeColorBrightGreen;
 
     @JsonAlias("ALGAE_COLOR_DRK_GREEN")
-    @Length(min=0, max=1)
     private Boolean algaeColorDrkGreen;
 
     @JsonAlias("ALGAE_COLOR_YELLOW")
-    @Length(min=0, max=1)
     private Boolean algaeColorYellow;
 
     @JsonAlias("ALGAE_COLOR_BROWN")
-    @Length(min=0, max=1)
     private Boolean algaeColorBrown;
 
     @JsonAlias("ALGAE_COLOR_OTHER")
-    @Length(min=0, max=1)
     private Boolean algaeColorOther;
 
     @JsonAlias("ALGAE_COLOR_OTHER_DESC")
@@ -453,7 +431,6 @@ public class SanitaryData {
     private LocalDateTime dateUpdated;
 
     @JsonAlias("MISSING_REQUIRED_FLAG")
-    @Length(min=0, max=1)
     private Boolean missingRequiredFlag;
 
     @JsonAlias("vPages") /////???
@@ -471,6 +448,35 @@ public class SanitaryData {
     @JsonAlias("date")
 //    @Basic //TODO
     private LocalDateTime date;
+
+    @JsonView(Views.Response.class)
+    public ValidationResults getValidationErrors() {
+        if (null != validationErrors) {
+            return validationErrors;
+        } else {
+            return new ValidationResults();
+        }
+    }
+
+    public void setValidationErrors(final Set<ConstraintViolation<SanitaryData>> inValidationErrors) {
+        validationErrors = new ValidationResults();
+        if (null != inValidationErrors) {
+            List<ValidatorResult> vResults = new ArrayList<ValidatorResult>();
+            for (ConstraintViolation<SanitaryData> vError : inValidationErrors) {
+                ValidatorResult vResult = new ValidatorResult(vError.getPropertyPath().toString(), vError.getMessage(),null);
+                vResults.add(vResult);
+            }
+            validationErrors.setValidationErrors(vResults);
+        }
+    }
+
+    public void addValidatorResult(final ValidatorResult inValidatorResult) {
+        if (null == validationErrors) {
+            validationErrors = new ValidationResults();
+        }
+        validationErrors.addValidatorResult(inValidatorResult);
+    }
+
 
     public void setId(String id) {
         this.id = id;

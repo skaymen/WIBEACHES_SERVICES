@@ -44,12 +44,9 @@ public class SanitaryDataController {
     @Autowired
     private Validator validator;
 
-//    private static final Logger logger = LoggerFactory.getLogger(SanitaryDataController.class); //TODO: not sure how to correctly implement logging
 
     public static final String UNKNOWN_USERNAME = "unknown ";
-//    public static final String USER_ID = "john";
-//    public static final String FAVORITES = "this one";
-//    public static final String COUNTY = "Dane";
+
 
 //    @PreAuthorize("hasPermission(#sd, null)")
     @PostMapping()
@@ -57,18 +54,25 @@ public class SanitaryDataController {
     public List<SanitaryData> createSanitaryData(@RequestBody List<SanitaryData> sd, HttpServletResponse response) throws IOException {
 //        sd.setCreatedBy(getUsername());//?
 //        sd.setUpdatedBy(getUsername());//?
-        for (int i = 0; i < sd.size(); i++) { //TODO: is this for loop correct?
-//            Set<ConstraintViolation<SanitaryData>> errors = validator.validate(sd[i]);
-//            if (errors.isEmpty()) {
+        boolean noErrors = true;
+        for (int i = 0; i < sd.size(); i++) {
+            Set<ConstraintViolation<SanitaryData>> errors = validator.validate(sd.get(i));
+            sd.get(i).setValidationErrors(errors);
+            if (!errors.isEmpty()) {
+                noErrors = false;
+//            return sDao.getById(newId); //? //ONLY NEEDED IF we are going to echo back data-- Ask Alice
+            } else {
+                response.setStatus(400);
+//
+            }
+        }
+        if (noErrors) {
+            for (int i = 0; i < sd.size(); i++) {
                 String newId = sDao.create(sd.get(i));
                 response.setStatus(HttpStatus.CREATED.value());
-
-//            return sDao.getById(newId); //? //ONLY NEEDED IF we are going to echo back data-- Ask Alice
-//            } else {
-//                response.setStatus(400);
-//
-//            }
+            }
         }
+
         return sd;
     }
 
