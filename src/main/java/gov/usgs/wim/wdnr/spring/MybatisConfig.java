@@ -4,8 +4,10 @@ import java.util.LinkedHashMap;
 
 import javax.sql.DataSource;
 
+import gov.usgs.wim.wdnr.dao.StringBooleanTypeHandler;
 import gov.usgs.wim.wdnr.domain.SanitaryData;
 import org.apache.ibatis.type.TypeAliasRegistry;
+import org.apache.ibatis.type.TypeHandlerRegistry;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -27,7 +29,7 @@ public class MybatisConfig {
         config.setCacheEnabled(false);
         config.setLazyLoadingEnabled(false);
         config.setAggressiveLazyLoading(false);
-
+        registerTypeHandlers(config.getTypeHandlerRegistry());
         registerAliases(config.getTypeAliasRegistry());
 
         return config;
@@ -46,6 +48,10 @@ public class MybatisConfig {
     private void registerAliases(TypeAliasRegistry registry) {
         registry.registerAlias(LINKED_HASH_MAP_ALIAS, LinkedHashMap.class);
         registry.registerAlias("SanitaryData", SanitaryData.class);
+    }
+
+    private void registerTypeHandlers(TypeHandlerRegistry registry) {
+        registry.register(Boolean.class, StringBooleanTypeHandler.class);
     }
 
 }

@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.cglib.core.Local;
 
@@ -17,6 +18,7 @@ import org.springframework.cglib.core.Local;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SanitaryData {
 
+    @JsonView(Views.Response.class)
     private String id; //probably what we will use for primary key
 
     @JsonAlias("user_name") //?
@@ -135,75 +137,75 @@ public class SanitaryData {
 
     @JsonAlias("FLOAT_STREET_LITTER")
     @Length(min=0, max=1)
-    private boolean floatStreetLitter;
+    private Boolean floatStreetLitter;
 
     @JsonAlias("FLOAT_FOOD")
     @Length(min=0, max=1)
-    private boolean floatFood;
+    private Boolean floatFood;
 
     @JsonAlias("FLOAT_MEDICAL")
     @Length(min=0, max=1)
-    private boolean floatMedical;
+    private Boolean floatMedical;
 
     @JsonAlias("FLOAT_SEWAGE")
     @Length(min=0, max=1)
-    private boolean floatSewage;
+    private Boolean floatSewage;
 
     @JsonAlias("FLOAT_BLDG_MATERIALS")
     @Length(min=0, max=1)
-    private boolean floatBldgMaterials;
+    private Boolean floatBldgMaterials;
 
     @JsonAlias("FLOAT_FISHING")
     @Length(min=0, max=1)
-    private boolean floatFishing;
+    private Boolean floatFishing;
 
     @JsonAlias("FLOAT_OTHER")
     @Length(min=0, max=1)
-    private boolean floatOther;
+    private Boolean floatOther;
 
     @JsonAlias("FLOAT_OTHER_DESC")
     @Length(min=0, max=50)
-    private boolean floatOtherDesc;
+    private Boolean floatOtherDesc;
 
     @JsonAlias("DEBRIS_STREET_LITTER")
     @Length(min=0, max=1)
-    private boolean debrisStreetLitter;
+    private Boolean debrisStreetLitter;
 
     @JsonAlias("DEBRIS_FOOD")
     @Length(min=0, max=1)
-    private boolean debrisFood;
+    private Boolean debrisFood;
 
     @JsonAlias("DEBRIS_MEDICAL")
     @Length(min=0, max=1)
-    private boolean debrisMedical;
+    private Boolean debrisMedical;
 
     @JsonAlias("DEBRIS_SEWAGE")
     @Length(min=0, max=1)
-    private boolean debrisSewage;
+    private Boolean debrisSewage;
 
     @JsonAlias("DEBRIS_BLDG_MATERIALS")
     @Length(min=0, max=1)
-    private boolean debrisBldgMaterials;
+    private Boolean debrisBldgMaterials;
 
     @JsonAlias("DEBRIS_FISHING")
     @Length(min=0, max=1)
-    private boolean debrisFishing;
+    private Boolean debrisFishing;
 
     @JsonAlias("DEBRIS_HOUSEHOLD")
     @Length(min=0, max=1)
-    private boolean debrisHousehold;
+    private Boolean debrisHousehold;
 
     @JsonAlias("DEBRIS_TAR")
     @Length(min=0, max=1)
-    private boolean debrisTar;
+    private Boolean debrisTar;
 
     @JsonAlias("DEBRIS_OIL")
     @Length(min=0, max=1)
-    private boolean debrisOil;
+    private Boolean debrisOil;
 
     @JsonAlias("DEBRIS_OTHER")
     @Length(min=0, max=1)
-    private boolean debrisOther;
+    private Boolean debrisOther;
 
     @JsonAlias("DEBRIS_OTHER_DESC")
     @Length(min=0, max=255)
@@ -307,7 +309,7 @@ public class SanitaryData {
 
     @JsonAlias("EST_ACT_FLAG")
     @Length(min=0, max=1)
-    private boolean estActFlag;
+    private String estActFlag;
 
     @JsonAlias("WAVE_DIRECTION")
     @Length(min=0, max=10)
@@ -335,7 +337,7 @@ public class SanitaryData {
 
     @JsonAlias("COLOR_CHANGE")
     @Length(min=0, max=1)
-    private boolean colorChange;
+    private Boolean colorChange;
 
     @JsonAlias("COLOR_DESCRIPTION")
     @Length(min=0, max=50)
@@ -379,19 +381,19 @@ public class SanitaryData {
 
     @JsonAlias("ALGAE_TYPE_PERIPHYTON")
     @Length(min=0, max=1)
-    private boolean algaeTypePeriphyton;
+    private Boolean algaeTypePeriphyton;
 
     @JsonAlias("ALGAE_TYPE_GLOBULAR")
     @Length(min=0, max=1)
-    private boolean algaeTypeGlobular;
+    private Boolean algaeTypeGlobular;
 
     @JsonAlias("ALGAE_TYPE_FREEFLOATING")
     @Length(min=0, max=1)
-    private boolean algaeTypeFreefloating;
+    private Boolean algaeTypeFreefloating;
 
     @JsonAlias("ALGAE_TYPE_OTHER")
     @Length(min=0, max=1)
-    private boolean algaeTypeOther;
+    private Boolean algaeTypeOther;
 
     @JsonAlias("ALGAE_TYPE_OTHER_DESC")
     @Length(min=0, max=50)
@@ -399,27 +401,27 @@ public class SanitaryData {
 
     @JsonAlias("ALGAE_COLOR_LT_GREEN")
     @Length(min=0, max=1)
-    private boolean algaeColorLtGreen;
+    private Boolean algaeColorLtGreen;
 
     @JsonAlias("ALGAE_COLOR_BRGHT_GREEN") ////????
     @Length(min=0, max=1)
-    private boolean algaeColorBrightGreen;
+    private Boolean algaeColorBrightGreen;
 
     @JsonAlias("ALGAE_COLOR_DRK_GREEN")
     @Length(min=0, max=1)
-    private boolean algaeColorDrkGreen;
+    private Boolean algaeColorDrkGreen;
 
     @JsonAlias("ALGAE_COLOR_YELLOW")
     @Length(min=0, max=1)
-    private boolean algaeColorYellow;
+    private Boolean algaeColorYellow;
 
     @JsonAlias("ALGAE_COLOR_BROWN")
     @Length(min=0, max=1)
-    private boolean algaeColorBrown;
+    private Boolean algaeColorBrown;
 
     @JsonAlias("ALGAE_COLOR_OTHER")
     @Length(min=0, max=1)
-    private boolean algaeColorOther;
+    private Boolean algaeColorOther;
 
     @JsonAlias("ALGAE_COLOR_OTHER_DESC")
     @Length(min=0, max=50)
@@ -452,7 +454,7 @@ public class SanitaryData {
 
     @JsonAlias("MISSING_REQUIRED_FLAG")
     @Length(min=0, max=1)
-    private boolean missingRequiredFlag;
+    private Boolean missingRequiredFlag;
 
     @JsonAlias("vPages") /////???
     @Length(min=0, max=50)
@@ -586,75 +588,75 @@ public class SanitaryData {
         this.numOtherDesc = numOtherDesc;
     }
 
-    public void setFloatStreetLitter(boolean floatStreetLitter) {
+    public void setFloatStreetLitter(Boolean floatStreetLitter) {
         this.floatStreetLitter = floatStreetLitter;
     }
 
-    public void setFloatFood(boolean floatFood) {
+    public void setFloatFood(Boolean floatFood) {
         this.floatFood = floatFood;
     }
 
-    public void setFloatMedical(boolean floatMedical) {
+    public void setFloatMedical(Boolean floatMedical) {
         this.floatMedical = floatMedical;
     }
 
-    public void setFloatSewage(boolean floatSewage) {
+    public void setFloatSewage(Boolean floatSewage) {
         this.floatSewage = floatSewage;
     }
 
-    public void setFloatBldgMaterials(boolean floatBldgMaterials) {
+    public void setFloatBldgMaterials(Boolean floatBldgMaterials) {
         this.floatBldgMaterials = floatBldgMaterials;
     }
 
-    public void setFloatFishing(boolean floatFishing) {
+    public void setFloatFishing(Boolean floatFishing) {
         this.floatFishing = floatFishing;
     }
 
-    public void setFloatOther(boolean floatOther) {
+    public void setFloatOther(Boolean floatOther) {
         this.floatOther = floatOther;
     }
 
-    public void setFloatOtherDesc(boolean floatOtherDesc) {
+    public void setFloatOtherDesc(Boolean floatOtherDesc) {
         this.floatOtherDesc = floatOtherDesc;
     }
 
-    public void setDebrisStreetLitter(boolean debrisStreetLitter) {
+    public void setDebrisStreetLitter(Boolean debrisStreetLitter) {
         this.debrisStreetLitter = debrisStreetLitter;
     }
 
-    public void setDebrisFood(boolean debrisFood) {
+    public void setDebrisFood(Boolean debrisFood) {
         this.debrisFood = debrisFood;
     }
 
-    public void setDebrisMedical(boolean debrisMedical) {
+    public void setDebrisMedical(Boolean debrisMedical) {
         this.debrisMedical = debrisMedical;
     }
 
-    public void setDebrisSewage(boolean debrisSewage) {
+    public void setDebrisSewage(Boolean debrisSewage) {
         this.debrisSewage = debrisSewage;
     }
 
-    public void setDebrisBldgMaterials(boolean debrisBldgMaterials) {
+    public void setDebrisBldgMaterials(Boolean debrisBldgMaterials) {
         this.debrisBldgMaterials = debrisBldgMaterials;
     }
 
-    public void setDebrisFishing(boolean debrisFishing) {
+    public void setDebrisFishing(Boolean debrisFishing) {
         this.debrisFishing = debrisFishing;
     }
 
-    public void setDebrisHousehold(boolean debrisHousehold) {
+    public void setDebrisHousehold(Boolean debrisHousehold) {
         this.debrisHousehold = debrisHousehold;
     }
 
-    public void setDebrisTar(boolean debrisTar) {
+    public void setDebrisTar(Boolean debrisTar) {
         this.debrisTar = debrisTar;
     }
 
-    public void setDebrisOil(boolean debrisOil) {
+    public void setDebrisOil(Boolean debrisOil) {
         this.debrisOil = debrisOil;
     }
 
-    public void setDebrisOther(boolean debrisOther) {
+    public void setDebrisOther(Boolean debrisOther) {
         this.debrisOther = debrisOther;
     }
 
@@ -758,7 +760,7 @@ public class SanitaryData {
         this.waveHeightUnits = waveHeightUnits;
     }
 
-    public void setEstActFlag(boolean estActFlag) {
+    public void setEstActFlag(String estActFlag) {
         this.estActFlag = estActFlag;
     }
 
@@ -786,7 +788,7 @@ public class SanitaryData {
         this.pH = pH;
     }
 
-    public void setColorChange(boolean colorChange) {
+    public void setColorChange(Boolean colorChange) {
         this.colorChange = colorChange;
     }
 
@@ -830,19 +832,19 @@ public class SanitaryData {
         this.algaeOnBeach = algaeOnBeach;
     }
 
-    public void setAlgaeTypePeriphyton(boolean algaeTypePeriphyton) {
+    public void setAlgaeTypePeriphyton(Boolean algaeTypePeriphyton) {
         this.algaeTypePeriphyton = algaeTypePeriphyton;
     }
 
-    public void setAlgaeTypeGlobular(boolean algaeTypeGlobular) {
+    public void setAlgaeTypeGlobular(Boolean algaeTypeGlobular) {
         this.algaeTypeGlobular = algaeTypeGlobular;
     }
 
-    public void setAlgaeTypeFreefloating(boolean algaeTypeFreefloating) {
+    public void setAlgaeTypeFreefloating(Boolean algaeTypeFreefloating) {
         this.algaeTypeFreefloating = algaeTypeFreefloating;
     }
 
-    public void setAlgaeTypeOther(boolean algaeTypeOther) {
+    public void setAlgaeTypeOther(Boolean algaeTypeOther) {
         this.algaeTypeOther = algaeTypeOther;
     }
 
@@ -850,27 +852,27 @@ public class SanitaryData {
         this.algaeTypeOtherDesc = algaeTypeOtherDesc;
     }
 
-    public void setAlgaeColorLtGreen(boolean algaeColorLtGreen) {
+    public void setAlgaeColorLtGreen(Boolean algaeColorLtGreen) {
         this.algaeColorLtGreen = algaeColorLtGreen;
     }
 
-    public void setAlgaeColorBrightGreen(boolean algaeColorBrightGreen) {
+    public void setAlgaeColorBrightGreen(Boolean algaeColorBrightGreen) {
         this.algaeColorBrightGreen = algaeColorBrightGreen;
     }
 
-    public void setAlgaeColorDrkGreen(boolean algaeColorDrkGreen) {
+    public void setAlgaeColorDrkGreen(Boolean algaeColorDrkGreen) {
         this.algaeColorDrkGreen = algaeColorDrkGreen;
     }
 
-    public void setAlgaeColorYellow(boolean algaeColorYellow) {
+    public void setAlgaeColorYellow(Boolean algaeColorYellow) {
         this.algaeColorYellow = algaeColorYellow;
     }
 
-    public void setAlgaeColorBrown(boolean algaeColorBrown) {
+    public void setAlgaeColorBrown(Boolean algaeColorBrown) {
         this.algaeColorBrown = algaeColorBrown;
     }
 
-    public void setAlgaeColorOther(boolean algaeColorOther) {
+    public void setAlgaeColorOther(Boolean algaeColorOther) {
         this.algaeColorOther = algaeColorOther;
     }
 
@@ -902,7 +904,7 @@ public class SanitaryData {
         this.dateUpdated = dateUpdated;
     }
 
-    public void setMissingRequiredFlag(boolean missingRequiredFlag) {
+    public void setMissingRequiredFlag(Boolean missingRequiredFlag) {
         this.missingRequiredFlag = missingRequiredFlag;
     }
 
@@ -1036,75 +1038,75 @@ public class SanitaryData {
         return numOtherDesc;
     }
 
-    public boolean getFloatStreetLitter() {
+    public Boolean getFloatStreetLitter() {
         return floatStreetLitter;
     }
 
-    public boolean getFloatFood() {
+    public Boolean getFloatFood() {
         return floatFood;
     }
 
-    public boolean getFloatMedical() {
+    public Boolean getFloatMedical() {
         return floatMedical;
     }
 
-    public boolean getFloatSewage() {
+    public Boolean getFloatSewage() {
         return floatSewage;
     }
 
-    public boolean getFloatBldgMaterials() {
+    public Boolean getFloatBldgMaterials() {
         return floatBldgMaterials;
     }
 
-    public boolean getFloatFishing() {
+    public Boolean getFloatFishing() {
         return floatFishing;
     }
 
-    public boolean getFloatOther() {
+    public Boolean getFloatOther() {
         return floatOther;
     }
 
-    public boolean getFloatOtherDesc() {
+    public Boolean getFloatOtherDesc() {
         return floatOtherDesc;
     }
 
-    public boolean getDebrisStreetLitter() {
+    public Boolean getDebrisStreetLitter() {
         return debrisStreetLitter;
     }
 
-    public boolean getDebrisFood() {
+    public Boolean getDebrisFood() {
         return debrisFood;
     }
 
-    public boolean getDebrisMedical() {
+    public Boolean getDebrisMedical() {
         return debrisMedical;
     }
 
-    public boolean getDebrisSewage() {
+    public Boolean getDebrisSewage() {
         return debrisSewage;
     }
 
-    public boolean getDebrisBldgMaterials() {
+    public Boolean getDebrisBldgMaterials() {
         return debrisBldgMaterials;
     }
 
-    public boolean getDebrisFishing() {
+    public Boolean getDebrisFishing() {
         return debrisFishing;
     }
 
-    public boolean getDebrisHousehold() {
+    public Boolean getDebrisHousehold() {
         return debrisHousehold;
     }
 
-    public boolean getDebrisTar() {
+    public Boolean getDebrisTar() {
         return debrisTar;
     }
 
-    public boolean getDebrisOil() {
+    public Boolean getDebrisOil() {
         return debrisOil;
     }
 
-    public boolean getDebrisOther() {
+    public Boolean getDebrisOther() {
         return debrisOther;
     }
 
@@ -1208,7 +1210,7 @@ public class SanitaryData {
         return waveHeightUnits;
     }
 
-    public boolean getEstActFlag() {
+    public String getEstActFlag() {
         return estActFlag;
     }
 
@@ -1236,7 +1238,7 @@ public class SanitaryData {
         return pH;
     }
 
-    public boolean getColorChange() {
+    public Boolean getColorChange() {
         return colorChange;
     }
 
@@ -1280,19 +1282,19 @@ public class SanitaryData {
         return algaeOnBeach;
     }
 
-    public boolean getAlgaeTypePeriphyton() {
+    public Boolean getAlgaeTypePeriphyton() {
         return algaeTypePeriphyton;
     }
 
-    public boolean getAlgaeTypeGlobular() {
+    public Boolean getAlgaeTypeGlobular() {
         return algaeTypeGlobular;
     }
 
-    public boolean getAlgaeTypeFreefloating() {
+    public Boolean getAlgaeTypeFreefloating() {
         return algaeTypeFreefloating;
     }
 
-    public boolean getAlgaeTypeOther() {
+    public Boolean getAlgaeTypeOther() {
         return algaeTypeOther;
     }
 
@@ -1300,27 +1302,27 @@ public class SanitaryData {
         return algaeTypeOtherDesc;
     }
 
-    public boolean getAlgaeColorLtGreen() {
+    public Boolean getAlgaeColorLtGreen() {
         return algaeColorLtGreen;
     }
 
-    public boolean getAlgaeColorBrightGreen() {
+    public Boolean getAlgaeColorBrightGreen() {
         return algaeColorBrightGreen;
     }
 
-    public boolean getAlgaeColorDrkGreen() {
+    public Boolean getAlgaeColorDrkGreen() {
         return algaeColorDrkGreen;
     }
 
-    public boolean getAlgaeColorYellow() {
+    public Boolean getAlgaeColorYellow() {
         return algaeColorYellow;
     }
 
-    public boolean getAlgaeColorBrown() {
+    public Boolean getAlgaeColorBrown() {
         return algaeColorBrown;
     }
 
-    public boolean getAlgaeColorOther() {
+    public Boolean getAlgaeColorOther() {
         return algaeColorOther;
     }
 
@@ -1352,7 +1354,7 @@ public class SanitaryData {
         return dateUpdated;
     }
 
-    public boolean getMissingRequiredFlag() {
+    public Boolean getMissingRequiredFlag() {
         return missingRequiredFlag;
     }
 

@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import gov.usgs.wim.wdnr.dao.SanitaryDataDao;
 import gov.usgs.wim.wdnr.dao.StreamingDao;
 import gov.usgs.wim.wdnr.domain.SanitaryData;
+import gov.usgs.wim.wdnr.domain.Views;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,7 +53,8 @@ public class SanitaryDataController {
 
 //    @PreAuthorize("hasPermission(#sd, null)")
     @PostMapping()
-    public Object createSanitaryData(@RequestBody List<SanitaryData> sd, HttpServletResponse response) throws IOException {
+    @JsonView(Views.Response.class)
+    public List<SanitaryData> createSanitaryData(@RequestBody List<SanitaryData> sd, HttpServletResponse response) throws IOException {
 //        sd.setCreatedBy(getUsername());//?
 //        sd.setUpdatedBy(getUsername());//?
         for (int i = 0; i < sd.size(); i++) { //TODO: is this for loop correct?
@@ -66,7 +69,7 @@ public class SanitaryDataController {
 //
 //            }
         }
-        return null;
+        return sd;
     }
 
 
