@@ -2,6 +2,7 @@ package gov.usgs.wim.wdnr.webservice;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -48,24 +49,22 @@ public class SanitaryDataController {
 //    public static final String FAVORITES = "this one";
 //    public static final String COUNTY = "Dane";
 
-    @PreAuthorize("hasPermission(#sd, null)")
+//    @PreAuthorize("hasPermission(#sd, null)")
     @PostMapping()
-    public Object createSanitaryData(@RequestBody SanitaryData[] sd, HttpServletResponse response) throws IOException {
+    public Object createSanitaryData(@RequestBody List<SanitaryData> sd, HttpServletResponse response) throws IOException {
 //        sd.setCreatedBy(getUsername());//?
 //        sd.setUpdatedBy(getUsername());//?
-        for (int i = 0; i < sd.length; i++) { //TODO: is this for loop correct?
-            Set<ConstraintViolation<SanitaryData>> errors = validator.validate(sd[i]);
-            if (errors.isEmpty()) {
-                String newId = sDao.create(sd[i]);
+        for (int i = 0; i < sd.size(); i++) { //TODO: is this for loop correct?
+//            Set<ConstraintViolation<SanitaryData>> errors = validator.validate(sd[i]);
+//            if (errors.isEmpty()) {
+                String newId = sDao.create(sd.get(i));
                 response.setStatus(HttpStatus.CREATED.value());
-                return null;
 
 //            return sDao.getById(newId); //? //ONLY NEEDED IF we are going to echo back data-- Ask Alice
-            } else {
-                response.setStatus(400);
-                return errors;
-
-            }
+//            } else {
+//                response.setStatus(400);
+//
+//            }
         }
         return null;
     }
