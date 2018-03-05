@@ -9,9 +9,6 @@
         NUM_OTHER_DESC, FLOAT_STREET_LITTER, FLOAT_FOOD, FLOAT_MEDICAL, FLOAT_SEWAGE, FLOAT_BLDG_MATERIALS,
         FLOAT_FISHING, FLOAT_OTHER, FLOAT_OTHER_DESC, DEBRIS_STREET_LITTER, DEBRIS_FOOD, DEBRIS_MEDICAL, DEBRIS_SEWAGE,
         DEBRIS_BLDG_MATERIALS, DEBRIS_FISHING, DEBRIS_HOUSEHOLD, DEBRIS_TAR, DEBRIS_OIL, DEBRIS_OTHER,
-        DEBRIS_OTHER_DESC, FLOAT_STREET_LITTER, FLOAT_FOOD, FLOAT_MEDICAL, FLOAT_SEWAGE, FLOAT_BLDG_MATERIALS,
-        FLOAT_FISHING, FLOAT_OTHER, FLOAT_OTHER_DESC, DEBRIS_STREET_LITTER, DEBRIS_FOOD, DEBRIS_MEDICAL, DEBRIS_SEWAGE,
-        DEBRIS_BLDG_MATERIALS, DEBRIS_FISHING, DEBRIS_HOUSEHOLD, DEBRIS_TAR, DEBRIS_OIL, DEBRIS_OTHER,
         DEBRIS_OTHER_DESC, DEBRIS_AMOUNT, NO_IN_WATER, NUM_OUT_OF_WATER, NO_PEOPLE_BOATING, NO_PEOPLE_FISHING,
         NO_PEOPLE_SURFING, NO_PEOPLE_WINDSURFING, NO_PEOPLE_DIVING, NO_PEOPLE_CLAMMING, NO_PEOPLE_OTHER,
         NO_PEOPLE_OTHER_DESC, AIR_TEMP, AIR_UNITS, WIND_SPEED, WIND_SPEED_UNITS, WIND_DIR_DEGREES, WIND_DIR_DESC,
@@ -107,7 +104,7 @@
                 #{algaeOnBeach, jdbcType=VARCHAR},
                 #{algaeTypePeriphyton, jdbcType=VARCHAR},
                 #{algaeTypeGlobular, jdbcType=VARCHAR},
-                #{algaeTypeFreeFloating, jdbcType=VARCHAR},
+                #{algaeTypeFreefloating, jdbcType=VARCHAR},
                 #{algaeTypeOther, jdbcType=VARCHAR},
                 #{algaeTypeOtherDesc, jdbcType=VARCHAR},
                 #{algaeColorLtGreen, jdbcType=VARCHAR},
@@ -123,10 +120,7 @@
                 #{part4Comments, jdbcType=VARCHAR},
                 #{dateEntered, jdbcType=DATE},
                 #{dateUpdated, jdbcType=DATE},
-                #{missingRequiredFlag, jdbcType=VARCHAR},
-                now() at time zone 'utc',
-                now() at time zone 'utc'
-                }
+                #{missingRequiredFlag, jdbcType=VARCHAR}
             )
     </insert>
 
