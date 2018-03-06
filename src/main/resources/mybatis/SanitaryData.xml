@@ -19,7 +19,7 @@
         ALGAE_TYPE_GLOBULAR, ALGAE_TYPE_FREEFLOATING, ALGAE_TYPE_OTHER, ALGAE_TYPE_OTHER_DESC, ALGAE_COLOR_LT_GREEN,
         ALGAE_COLOR_BRGHT_GREEN, ALGAE_COLOR_DRK_GREEN, ALGAE_COLOR_YELLOW, ALGAE_COLOR_BROWN, ALGAE_COLOR_OTHER,
         ALGAE_COLOR_OTHER_DESC, PART_1_COMMENTS, PART2_COMMENTS, PART3_COMMENTS, PART4_COMMENTS, DATE_ENTERED,
-        DATE_UPDATED, MISSING_REQUIRED_FLAG)
+        DATE_UPDATED, MISSING_REQUIRED_FLAG, SAMPLER_SEQ, DATA_ENTRY_SEQ)
             values(
                 #{beachSeq, jdbcType=INTEGER},
                 #{monitorSiteSeq, jdbcType=INTEGER},
@@ -121,9 +121,11 @@
                 #{dateEntered, jdbcType=DATE},
                 #{dateUpdated, jdbcType=DATE},
                 #{missingRequiredFlag, jdbcType=VARCHAR},
-                nvl(#{samplerSeq, jdbcType=INTEGER}, 433),
-                nvl(#{dataEntrySeq, jdbcType=INTEGER}, 433)
+                #{samplerSeq, jdbcType=INTEGER},
+                #{dataEntrySeq, jdbcType=INTEGER}
             )
+
+--             WHERE LAST_UPDATE_DATE...
     </insert>
 
 </mapper>
