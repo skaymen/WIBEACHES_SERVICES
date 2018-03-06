@@ -33,7 +33,7 @@ public class SanitaryData {
     private String userName;
 
     @JsonAlias("user_id") //?
-    @Digits(integer=10, fraction=0)
+    @Length(min=0, max=10)
     private String userId;
 
     @JsonAlias("__favorites") //?
@@ -164,7 +164,8 @@ public class SanitaryData {
     private Boolean floatOther;
 
     @JsonAlias("FLOAT_OTHER_DESC")
-    private Boolean floatOtherDesc;
+    @Length(min=0, max=50)
+    private String floatOtherDesc;
 
     @JsonAlias("DEBRIS_STREET_LITTER")
     private Boolean debrisStreetLitter;
@@ -297,8 +298,7 @@ public class SanitaryData {
     private String waveHeightUnits;
 
     @JsonAlias("EST_ACT_FLAG")
-    @Length(min=0, max=1)
-    private String estActFlag;
+    private Boolean estActFlag;
 
     @JsonAlias("WAVE_DIRECTION")
     @Length(min=0, max=10)
@@ -423,7 +423,6 @@ public class SanitaryData {
 
     @JsonAlias("DATE_ENTERED")
 //    @Basic //TODO
-    @NotNull
     private LocalDateTime dateEntered;
 
     @JsonAlias("DATE_UPDATED")
@@ -622,7 +621,7 @@ public class SanitaryData {
         this.floatOther = floatOther;
     }
 
-    public void setFloatOtherDesc(Boolean floatOtherDesc) {
+    public void setFloatOtherDesc(String floatOtherDesc) {
         this.floatOtherDesc = floatOtherDesc;
     }
 
@@ -766,7 +765,7 @@ public class SanitaryData {
         this.waveHeightUnits = waveHeightUnits;
     }
 
-    public void setEstActFlag(String estActFlag) {
+    public void setEstActFlag(Boolean estActFlag) {
         this.estActFlag = estActFlag;
     }
 
@@ -1072,7 +1071,7 @@ public class SanitaryData {
         return floatOther;
     }
 
-    public Boolean getFloatOtherDesc() {
+    public String getFloatOtherDesc() {
         return floatOtherDesc;
     }
 
@@ -1216,7 +1215,7 @@ public class SanitaryData {
         return waveHeightUnits;
     }
 
-    public String getEstActFlag() {
+    public Boolean getEstActFlag() {
         return estActFlag;
     }
 

@@ -120,7 +120,9 @@
                 #{part4Comments, jdbcType=VARCHAR},
                 #{dateEntered, jdbcType=DATE},
                 #{dateUpdated, jdbcType=DATE},
-                #{missingRequiredFlag, jdbcType=VARCHAR}
+                #{missingRequiredFlag, jdbcType=VARCHAR},
+                nvl(#{samplerSeq, jdbcType=INTEGER}, 433),
+                nvl(#{dataEntrySeq, jdbcType=INTEGER}, 433)
             )
     </insert>
 
