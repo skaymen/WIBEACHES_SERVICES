@@ -125,7 +125,7 @@
                 #{dataEntrySeq, jdbcType=INTEGER}
             )
 
---             WHERE LAST_UPDATE_DATE...
+--             WHERE LAST_UPDATE_DATE...TODO add code here
     </insert>
 
 </mapper>

@@ -83,6 +83,7 @@ public class SanitaryData {
 
     @JsonAlias("MONITOR_SITE_SEQ")
     @Length(min=0, max=8)
+    @NotNull
     private String monitorSiteSeq;
 
     @JsonAlias("ECOLI_SAMPLE_TYPE")
