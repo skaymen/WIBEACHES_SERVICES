@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import gov.usgs.wim.wdnr.ApplicationVersion;
+import gov.usgs.wim.wdnr.domain.ApplicationVersion;
 import gov.usgs.wim.wdnr.swagger.SwaggerConfig;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
