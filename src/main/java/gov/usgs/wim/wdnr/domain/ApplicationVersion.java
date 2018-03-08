@@ -1,4 +1,4 @@
-package gov.usgs.wim.wdnr;
+package gov.usgs.wim.wdnr.domain;
 
 import java.util.Properties;
 
