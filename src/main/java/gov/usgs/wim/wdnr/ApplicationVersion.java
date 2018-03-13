@@ -1,13 +1,12 @@
 package gov.usgs.wim.wdnr;
 
-import java.util.Properties;
-
-import javax.servlet.ServletContext;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.ServletContextAware;
+
+import javax.servlet.ServletContext;
+import java.util.Properties;
 
 @Component
 public class ApplicationVersion implements ServletContextAware {
