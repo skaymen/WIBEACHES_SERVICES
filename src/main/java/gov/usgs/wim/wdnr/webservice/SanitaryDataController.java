@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,6 +34,8 @@ public class SanitaryDataController {
     @Autowired
     private Validator validator;
 
+    private static final Logger log = LoggerFactory.getLogger(SanitaryDataController.class);
+
 
     public static final String UNKNOWN_USERNAME = "unknown ";
 
@@ -40,6 +44,7 @@ public class SanitaryDataController {
     @PostMapping()
     @JsonView(Views.Response.class)
     public List<SanitaryData> createSanitaryData(@RequestBody List<SanitaryData> sd, HttpServletResponse response) throws IOException {
+
 //        sd.setCreatedBy(getUsername());//?
 //        sd.setUpdatedBy(getUsername());//?
         boolean noErrors = true;
@@ -48,7 +53,7 @@ public class SanitaryDataController {
             sd.get(i).setValidationErrors(errors);
             if (!errors.isEmpty()) {
                 noErrors = false;
-//            return sDao.getById(newId); //? //ONLY NEEDED IF we are going to echo back data-- Ask Alice
+//            return sDao.getById(newId);
             } else {
                 response.setStatus(400);
 //
@@ -56,8 +61,12 @@ public class SanitaryDataController {
         }
         if (noErrors) {
             for (int i = 0; i < sd.size(); i++) {
-                String newId = sDao.create(sd.get(i));
+                log.debug("id before = " + sd.get(i).getIdNo());
+                sDao.create(sd.get(i));
+                log.debug("id after = " + sd.get(i).getIdNo());
                 response.setStatus(HttpStatus.CREATED.value());
+                log.debug("id final = " + sd.get(i).getIdNo());
+
             }
         }
 

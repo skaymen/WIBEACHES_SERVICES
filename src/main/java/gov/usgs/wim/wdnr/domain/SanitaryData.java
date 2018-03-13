@@ -45,9 +45,6 @@ public class SanitaryData {
 
     private int dataEntrySeq = 433;
 
-    @JsonView(Views.Response.class)
-    private String id; //probably what we will use for primary key
-
     @JsonAlias("user_name") //?
     @Length(min=0, max=50)
     private String userName;
@@ -461,8 +458,8 @@ public class SanitaryData {
     @Length(min=0, max=5)
     private String submitted;
 
+    @JsonView(Views.Response.class)
     @JsonAlias("id")
-    @Length(min=0, max=10)
     private String idNo;
 
     @JsonAlias("date")
@@ -497,10 +494,6 @@ public class SanitaryData {
         validationErrors.addValidatorResult(inValidatorResult);
     }
 
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public void setUserName(String userName) {
         this.userName = userName;
@@ -949,8 +942,6 @@ public class SanitaryData {
     public void setDate(LocalDateTime date) {
         this.date = date;
     }
-
-    public String getId() { return id; }
 
     public String getUserName() {
         return userName;

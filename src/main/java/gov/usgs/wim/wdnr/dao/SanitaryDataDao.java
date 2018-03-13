@@ -16,8 +16,7 @@ public class SanitaryDataDao extends SqlSessionDaoSupport {
     public SanitaryDataDao(SqlSessionFactory sqlSessionFactory) {
         setSqlSessionFactory(sqlSessionFactory);
     }
-    public String create(SanitaryData sd) {
+    public void create(SanitaryData sd) {
         getSqlSession().insert("create", sd);
-        return sd.getId();
     }
 }
