@@ -19,4 +19,8 @@ public class SanitaryDataDao extends SqlSessionDaoSupport {
     public void create(SanitaryData sd) {
         getSqlSession().insert("create", sd);
     }
+
+    public int getUserid(String username) {
+        return getSqlSession().selectOne("username", username);
+    }
 }

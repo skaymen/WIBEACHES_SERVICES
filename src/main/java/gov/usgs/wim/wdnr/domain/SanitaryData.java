@@ -25,47 +25,33 @@ public class SanitaryData {
 
     protected ValidationResults validationErrors;
 
-    public int getSamplerSeq() {
-        return samplerSeq;
-    }
 
-    public void setSamplerSeq(int samplerSeq) {
-        this.samplerSeq = 433;
-    }
 
-    private int samplerSeq = 433;
 
-    public int getDataEntrySeq() {
-        return dataEntrySeq;
-    }
 
-    public void setDataEntrySeq(int dataEntrySeq) {
-        this.dataEntrySeq = 433;
-    }
 
-    private int dataEntrySeq = 433;
 
-    @JsonAlias("user_name") //?
+    @JsonAlias("user_name")
     @Length(min=0, max=50)
     private String userName;
 
-    @JsonAlias("user_id") //?
+    @JsonAlias("user_id")
     @Length(min=0, max=10)
     private String userId;
 
-    @JsonAlias("__favorites") //?
+    @JsonAlias("__favorites")
     @Length(min=0, max=50)
     private String favorites;
 
-    @JsonAlias("__county") //?
+    @JsonAlias("__county")
     @Length(min=0, max=50)
     private String county;
 
-    @JsonAlias("__lake") //?
+    @JsonAlias("__lake")
     @Length(min=0, max=50)
     private String lake;
 
-    @JsonAlias("__beach") //?
+    @JsonAlias("__beach")
     @Length(min=0, max=50)
     private String beach;
 
@@ -74,7 +60,7 @@ public class SanitaryData {
     @NotNull
     private String beachSeq;
 
-    @JsonAlias("__site") //?
+    @JsonAlias("__site")
     @Length(min=0, max=50)
     private String site;
 
@@ -87,7 +73,7 @@ public class SanitaryData {
     @Length(min=0, max=30)
     private String ecoliSampleType;
 
-    @JsonAlias("SAMPLE_DATE_TIME_DISPLAYED") //?
+    @JsonAlias("SAMPLE_DATE_TIME_DISPLAYED")
     @Length(min=0, max=50)
     private String sampleDateTimeDisplayed;
 
@@ -287,7 +273,7 @@ public class SanitaryData {
     @Length(min=0, max=30)
     private String windDirDesc;
 
-    @JsonAlias("WEATHER_DES") ///????
+    @JsonAlias("WEATHER_DES")
     @Length(min=0, max=30)
     private String weatherDes;
 
@@ -303,7 +289,7 @@ public class SanitaryData {
     @Length(min=0, max=30)
     private String rainfallUnits;
 
-    @JsonAlias("RAINFALL_STD_DESC") ////????
+    @JsonAlias("RAINFALL_STD_DESC")
     @Length(min=0, max=60)
     private String rainfallStdDesc;
 
@@ -450,11 +436,11 @@ public class SanitaryData {
     @JsonAlias("MISSING_REQUIRED_FLAG")
     private Boolean missingRequiredFlag;
 
-    @JsonAlias("vPages") /////???
+    @JsonAlias("vPages")
     @Length(min=0, max=50)
     private String vPages;
 
-    @JsonAlias("submitted") ///????
+    @JsonAlias("submitted")
     @Length(min=0, max=5)
     private String submitted;
 
@@ -463,36 +449,11 @@ public class SanitaryData {
     private String idNo;
 
     @JsonAlias("date")
-//    @Basic //TODO
     private LocalDateTime date;
 
-    @JsonView(Views.Response.class)
-    public ValidationResults getValidationErrors() {
-        if (null != validationErrors) {
-            return validationErrors;
-        } else {
-            return new ValidationResults();
-        }
-    }
+    private int samplerSeq;
 
-    public void setValidationErrors(final Set<ConstraintViolation<SanitaryData>> inValidationErrors) {
-        validationErrors = new ValidationResults();
-        if (null != inValidationErrors) {
-            List<ValidatorResult> vResults = new ArrayList<ValidatorResult>();
-            for (ConstraintViolation<SanitaryData> vError : inValidationErrors) {
-                ValidatorResult vResult = new ValidatorResult(vError.getPropertyPath().toString(), vError.getMessage(),null);
-                vResults.add(vResult);
-            }
-            validationErrors.setValidationErrors(vResults);
-        }
-    }
-
-    public void addValidatorResult(final ValidatorResult inValidatorResult) {
-        if (null == validationErrors) {
-            validationErrors = new ValidationResults();
-        }
-        validationErrors.addValidatorResult(inValidatorResult);
-    }
+    private int dataEntrySeq;
 
 
     public void setUserName(String userName) {
@@ -943,6 +904,14 @@ public class SanitaryData {
         this.date = date;
     }
 
+    public void setSamplerSeq(int samplerSeq) {
+        this.samplerSeq = samplerSeq;
+    }
+
+    public void setDataEntrySeq(int dataEntrySeq) {
+        this.dataEntrySeq = dataEntrySeq;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -1389,6 +1358,42 @@ public class SanitaryData {
 
     public LocalDateTime getDate() {
         return date;
+    }
+
+    public int getSamplerSeq() {
+        return samplerSeq;
+    }
+
+    public int getDataEntrySeq() {
+        return dataEntrySeq;
+    }
+
+    @JsonView(Views.Response.class)
+    public ValidationResults getValidationErrors() {
+        if (null != validationErrors) {
+            return validationErrors;
+        } else {
+            return new ValidationResults();
+        }
+    }
+
+    public void setValidationErrors(final Set<ConstraintViolation<SanitaryData>> inValidationErrors) {
+        validationErrors = new ValidationResults();
+        if (null != inValidationErrors) {
+            List<ValidatorResult> vResults = new ArrayList<ValidatorResult>();
+            for (ConstraintViolation<SanitaryData> vError : inValidationErrors) {
+                ValidatorResult vResult = new ValidatorResult(vError.getPropertyPath().toString(), vError.getMessage(),null);
+                vResults.add(vResult);
+            }
+            validationErrors.setValidationErrors(vResults);
+        }
+    }
+
+    public void addValidatorResult(final ValidatorResult inValidatorResult) {
+        if (null == validationErrors) {
+            validationErrors = new ValidationResults();
+        }
+        validationErrors.addValidatorResult(inValidatorResult);
     }
 
 

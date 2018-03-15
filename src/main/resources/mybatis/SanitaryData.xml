@@ -127,4 +127,8 @@
 
     </insert>
 
+    <select id="username" resultType="Integer">
+          select person_id from bch_users where apex_name = #{value}
+    </select>
+
 </mapper>
