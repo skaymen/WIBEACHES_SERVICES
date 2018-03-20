@@ -1,13 +1,14 @@
 package gov.usgs.wim.wdnr.webservice;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
+import gov.usgs.wim.wdnr.domain.ValidationResults;
+import gov.usgs.wim.wdnr.domain.ValidatorResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,11 +68,23 @@ public class SanitaryDataController {
                 log.debug("id before = " + sd.get(i).getIdNo());
                 sd.get(i).setSamplerSeq(userid);
                 sd.get(i).setDataEntrySeq(userid);
-                sDao.create(sd.get(i));
-                log.debug("id after = " + sd.get(i).getIdNo());
+                try {
+                    sDao.create(sd.get(i));
+                } catch (Exception e) {
+                    if (e.getMessage().contains("BEACHHEALTH_DATA.SD2009_F_UK")) {
+                        ValidatorResult error = new ValidatorResult("x", "y", "z");
+                        List<ValidatorResult> l = new ArrayList<>();
+                        l.add(error);
+                        ValidationResults result = new ValidationResults();
+                        result.setValidationErrors(l);
+                        Set<ConstraintViolation<SanitaryData>> inValidationErrors;
+                        log.debug("unique constraint combo" + e.getMessage());
+                    }
+                    else
+                        log.debug("something else: " + e.getMessage());
+                    log.debug("ya");
+                }
                 response.setStatus(HttpStatus.CREATED.value());
-                log.debug("id final = " + sd.get(i).getIdNo());
-
             }
         }
 
@@ -79,7 +92,7 @@ public class SanitaryDataController {
     }
 
 
-    protected int getUserid() { //ask alice if we are going to get username / save any of this information
+    protected int getUserid() {
         int userid = 433;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (null != authentication && !(authentication instanceof AnonymousAuthenticationToken)) {

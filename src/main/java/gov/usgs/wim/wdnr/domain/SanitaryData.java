@@ -25,12 +25,6 @@ public class SanitaryData {
 
     protected ValidationResults validationErrors;
 
-
-
-
-
-
-
     @JsonAlias("user_name")
     @Length(min=0, max=50)
     private String userName;
@@ -56,7 +50,7 @@ public class SanitaryData {
     private String beach;
 
     @JsonAlias("BEACH_SEQ")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     @NotNull
     private String beachSeq;
 
@@ -65,7 +59,7 @@ public class SanitaryData {
     private String site;
 
     @JsonAlias("MONITOR_SITE_SEQ")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     @NotNull
     private String monitorSiteSeq;
 
@@ -83,19 +77,19 @@ public class SanitaryData {
     private LocalDateTime sampleDateTime;
 
     @JsonAlias("NO_GULLS")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String noGulls;
 
     @JsonAlias("NO_GEESE")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String noGeese;
 
     @JsonAlias("NO_DOGS")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String noDogs;
 
     @JsonAlias("NO_ANIMALS_OTHER")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String noAnimalsOther;
 
     @JsonAlias("NO_ANIMALS_OTHER_DESC") //??
@@ -103,43 +97,43 @@ public class SanitaryData {
     private String noAnimalsOtherDesc;
 
     @JsonAlias("NUM_LOONS")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String numLoons;
 
     @JsonAlias("NUM_HERR_GULLS")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String numHerrGulls;
 
     @JsonAlias("NUM_RING_GULLS")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String numRingGulls;
 
     @JsonAlias("NUM_CORMORANTS")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String numCormorants;
 
     @JsonAlias("NUM_LONGTAIL_DUCKS")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String numLongtailDucks;
 
     @JsonAlias("NUM_SCOTER")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String numScoter;
 
     @JsonAlias("NUM_HORN_GREBE")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String numHornGrebe;
 
     @JsonAlias("NUM_REDNECKED_GREBE")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String numRedneckedGrebe;
 
     @JsonAlias("NUM_FISH") //???
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String numFish;
 
     @JsonAlias("NUM_OTHER")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String numOther;
 
     @JsonAlias("NUM_OTHER_DESC")
@@ -210,39 +204,39 @@ public class SanitaryData {
     private String debrisAmount;
 
     @JsonAlias("NO_IN_WATER")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String noInWater;
 
     @JsonAlias("NUM_OUT_OF_WATER")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String numOutOfWater;
 
     @JsonAlias("NO_PEOPLE_BOATING")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String noPeopleBoating;
 
     @JsonAlias("NO_PEOPLE_FISHING")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String noPeopleFishing;
 
     @JsonAlias("NO_PEOPLE_SURFING")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String noPeopleSurfing;
 
     @JsonAlias("NO_PEOPLE_WINDSURFING")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String noPeopleWindsurfing;
 
     @JsonAlias("NUM_PEOPLE_DIVING")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String numPeopleDiving;
 
     @JsonAlias("NO_PEOPLE_CLAMMING")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String noPeopleClamming;
 
     @JsonAlias("NO_PEOPLE_OTHER")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String noPeopleOther;
 
     @JsonAlias("NO_PEOPLE_OTHER_DESC")
@@ -250,7 +244,7 @@ public class SanitaryData {
     private String noPeopleOtherDesc;
 
     @JsonAlias("AIR_TEMP")
-    @Length(min=0, max=12)
+    @Digits(integer=8, fraction=4)
     private String airTemp;
 
     @JsonAlias("AIR_UNITS")
@@ -258,7 +252,7 @@ public class SanitaryData {
     private String airUnits;
 
     @JsonAlias("WIND_SPEED")
-    @Length(min=0, max=12)
+    @Digits(integer=8, fraction=4)
     private String windSpeed;
 
     @JsonAlias("WIND_SPEED_UNITS")
@@ -266,7 +260,7 @@ public class SanitaryData {
     private String windSpeedUnits;
 
     @JsonAlias("WIND_DIR_DEGREES")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String windDirDegrees;
 
     @JsonAlias("WIND_DIR_DESC")
@@ -282,7 +276,7 @@ public class SanitaryData {
     private String rainfallLastEvent;
 
     @JsonAlias("RAINFALL")
-    @Length(min=0, max=12)
+    @Digits(integer=8, fraction=4)
     private String rainfall;
 
     @JsonAlias("RAINFALL_UNITS")
@@ -294,7 +288,7 @@ public class SanitaryData {
     private String rainfallStdDesc;
 
     @JsonAlias("WAVE_HEIGHT")
-    @Length(min=0, max=12)
+    @Digits(integer=8, fraction=4)
     private String waveHeight;
 
     @JsonAlias("WAVE_HEIGHT_UNITS")
@@ -313,7 +307,7 @@ public class SanitaryData {
     private String waveConditions;
 
     @JsonAlias("CURRENT_SPEED")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String currentSpeed;
 
     @JsonAlias("LONGSHORE_CURRENT_UNITS")
@@ -325,7 +319,7 @@ public class SanitaryData {
     private String shorelineCurrentDir;
 
     @JsonAlias("PH")
-    @Length(min=0, max=7)
+    @Digits(integer=5, fraction=2)
     private String pH;
 
     @JsonAlias("COLOR_CHANGE")
@@ -344,7 +338,7 @@ public class SanitaryData {
     private String odorOtherDescription;
 
     @JsonAlias("AVG_WATER_TEMP")
-    @Length(min=0, max=9)
+    @Digits(integer=7, fraction=2)
     private String avgWaterTemp;
 
     @JsonAlias("AVG_WATER_TEMP_UNITS")
@@ -356,11 +350,11 @@ public class SanitaryData {
     private String clarityDesc;
 
     @JsonAlias("NTU")
-    @Length(min=0, max=12)
+    @Digits(integer=10, fraction=2)
     private String NTU;
 
     @JsonAlias("SECCHI_TUBE_CM")
-    @Length(min=0, max=8)
+    @Digits(integer=8, fraction=0)
     private String secchiTubeCm;
 
     @JsonAlias("ALGAE_NEARSHORE")
@@ -451,8 +445,10 @@ public class SanitaryData {
     @JsonAlias("date")
     private LocalDateTime date;
 
+    @Digits(integer=8, fraction=0)
     private int samplerSeq;
 
+    @Digits(integer=8, fraction=0)
     private int dataEntrySeq;
 
 
@@ -1385,6 +1381,7 @@ public class SanitaryData {
                 ValidatorResult vResult = new ValidatorResult(vError.getPropertyPath().toString(), vError.getMessage(),null);
                 vResults.add(vResult);
             }
+
             validationErrors.setValidationErrors(vResults);
         }
     }
