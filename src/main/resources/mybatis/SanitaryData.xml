@@ -132,7 +132,7 @@
     </select>
 
     <select id="checkUniqueKey" resultType="Integer">
-        select count (*) from sanitary_data_fact where MONITOR_SITE_SEQ = #{MONITOR_SITE_SEQ} and SAMPLE_DATE_TIME = TO_DATE(#{SAMPLE_DATE_TIME, jdbcType=DATE})
+        select count (*) from sanitary_data_fact where MONITOR_SITE_SEQ = #{MONITOR_SITE_SEQ} and SAMPLE_DATE_TIME = #{SAMPLE_DATE_TIME}
     </select>
 
     <select id="checkBeachSeq" resultType="Integer">

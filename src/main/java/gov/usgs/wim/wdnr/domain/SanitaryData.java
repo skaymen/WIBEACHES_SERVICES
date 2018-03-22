@@ -51,8 +51,8 @@ public class SanitaryData {
     private String beach;
 
     @JsonAlias("BEACH_SEQ")
+    @NotNull(message = "You must provide a beach for this record")
     @Digits(integer=8, fraction=0)
-    @NotNull
     private String beachSeq;
 
     @JsonAlias("__site")
@@ -74,7 +74,7 @@ public class SanitaryData {
 
     @JsonAlias("SAMPLE_DATE_TIME")
 //    @Temporal(TemporalType.DATE) //TODO: Fix this
-    @NotNull
+    @NotNull(message="You must provide a sample date and time for this record")
     private LocalDateTime sampleDateTime;
 
     @JsonAlias("NO_GULLS")

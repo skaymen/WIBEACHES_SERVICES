@@ -57,10 +57,7 @@ public class SanitaryDataController {
             sd.get(i).setValidationErrors(errors);
             if (!errors.isEmpty()) {
                 noErrors = false;
-//            return sDao.getById(newId);
-            } else {
                 response.setStatus(400);
-//
             }
         }
         if (noErrors) {

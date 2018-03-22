@@ -9,6 +9,9 @@ import javax.validation.ConstraintValidatorContext;
 
 import gov.usgs.wim.wdnr.dao.SanitaryDataDao;
 import gov.usgs.wim.wdnr.domain.SanitaryData;
+import gov.usgs.wim.wdnr.webservice.SanitaryDataController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -31,10 +34,10 @@ public class UniqueKeyValidatorForSanitaryData implements ConstraintValidator<Un
             if (null != value.getMonitorSiteSeq() && null != value.getSampleDateTime()) {
                 Map<String, Object> filters = new HashMap<String,Object>();
                 filters.put("MONITOR_SITE_SEQ", value.getMonitorSiteSeq());
-                filters.put("SAMPLE_DATE_TIME", value.getSampleDateTime());
+                filters.put("SAMPLE_DATE_TIME", value.getSampleDateTime().withNano(0));
                 int sanitaryData = dao.checkUniqueKey(filters);
                 if (sanitaryData != 0) {
-                        valid = false;
+                    valid = false;
                 }
             }
         }
