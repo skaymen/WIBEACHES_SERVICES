@@ -1,6 +1,5 @@
 package gov.usgs.wim.wdnr.domain;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,15 +10,17 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
+import gov.usgs.wim.wdnr.Validation.BeachSeq;
+import gov.usgs.wim.wdnr.Validation.MonitorSite;
+import gov.usgs.wim.wdnr.Validation.UniqueKey;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.cglib.core.Local;
 
-//@UniqueKey //TODO MONITOR_SITE_SEQ and SAMPLE_DATE_TIME must be unique
+@UniqueKey
+@BeachSeq
+@MonitorSite
 
-//@Parent //TODO UPDATE_ENTRY_SEQ, DATA_ENTRY_SEQ, ANALYZER_SEQ, SAMPLER_SEQ
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SanitaryData {
 

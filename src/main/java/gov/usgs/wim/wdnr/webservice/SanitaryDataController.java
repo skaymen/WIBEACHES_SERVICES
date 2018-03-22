@@ -68,22 +68,7 @@ public class SanitaryDataController {
                 log.debug("id before = " + sd.get(i).getIdNo());
                 sd.get(i).setSamplerSeq(userid);
                 sd.get(i).setDataEntrySeq(userid);
-                try {
-                    sDao.create(sd.get(i));
-                } catch (Exception e) {
-                    if (e.getMessage().contains("BEACHHEALTH_DATA.SD2009_F_UK")) {
-                        ValidatorResult error = new ValidatorResult("x", "y", "z");
-                        List<ValidatorResult> l = new ArrayList<>();
-                        l.add(error);
-                        ValidationResults result = new ValidationResults();
-                        result.setValidationErrors(l);
-                        Set<ConstraintViolation<SanitaryData>> inValidationErrors;
-                        log.debug("unique constraint combo" + e.getMessage());
-                    }
-                    else
-                        log.debug("something else: " + e.getMessage());
-                    log.debug("ya");
-                }
+                sDao.create(sd.get(i));
                 response.setStatus(HttpStatus.CREATED.value());
             }
         }

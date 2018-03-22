@@ -131,4 +131,16 @@
           select person_id from bch_users where apex_name = #{value}
     </select>
 
+    <select id="checkUniqueKey" resultType="Integer">
+        select count (*) from sanitary_data_fact where MONITOR_SITE_SEQ = #{MONITOR_SITE_SEQ} and SAMPLE_DATE_TIME = TO_DATE(#{SAMPLE_DATE_TIME, jdbcType=DATE})
+    </select>
+
+    <select id="checkBeachSeq" resultType="Integer">
+        select count (*) from beach_dim where BEACH_SEQ = #{BEACH_SEQ}
+    </select>
+
+    <select id="checkMonitorSite" resultType="Integer">
+        select count (*) from monitor_site_dim where BEACH_SEQ = #{BEACH_SEQ} and MONITOR_SITE_SEQ = #{MONITOR_SITE_SEQ}
+    </select>
+
 </mapper>
