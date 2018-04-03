@@ -3,12 +3,8 @@ package gov.usgs.wim.wdnr.domain;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ValidatorResult {
-
-    private static final Logger log = LoggerFactory.getLogger(ValidatorResult.class);
 
 
     @JsonView(Views.Response.class)
@@ -28,8 +24,6 @@ public class ValidatorResult {
     public void setField(final String inField) {
         try {
             field = SanitaryData.class.getField(inField).getAnnotation(JsonAlias.class).value().toString();
-            log.debug("\n\n\n\n\n field: " + field + "\n\n\n\n\n");
-
         } catch (Exception e) {
             field = inField;
         }
