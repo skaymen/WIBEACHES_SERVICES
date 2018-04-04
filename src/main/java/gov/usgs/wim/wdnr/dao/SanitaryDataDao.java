@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
+import java.util.Map;
 
 @Component
 public class SanitaryDataDao extends SqlSessionDaoSupport {
@@ -22,5 +23,17 @@ public class SanitaryDataDao extends SqlSessionDaoSupport {
 
     public int getUserid(String username) {
         return getSqlSession().selectOne("username", username);
+    }
+
+    public int checkUniqueKey(Map<String, Object> params) {
+        return getSqlSession().selectOne("checkUniqueKey", params);
+    }
+
+    public int checkBeachSeq(Map<String, Object> params) {
+        return getSqlSession().selectOne("checkBeachSeq", params);
+    }
+
+    public int checkMonitorSite(Map<String, Object> params) {
+        return getSqlSession().selectOne("checkMonitorSite", params);
     }
 }

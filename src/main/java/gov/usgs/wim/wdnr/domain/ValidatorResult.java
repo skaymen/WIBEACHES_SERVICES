@@ -1,9 +1,11 @@
 package gov.usgs.wim.wdnr.domain;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
 public class ValidatorResult {
+
 
     @JsonView(Views.Response.class)
     private String field;
@@ -20,7 +22,11 @@ public class ValidatorResult {
     }
 
     public void setField(final String inField) {
-        field = inField;
+        try {
+            field = SanitaryData.class.getField(inField).getAnnotation(JsonAlias.class).value().toString();
+        } catch (Exception e) {
+            field = inField;
+        }
     }
 
     public String getMessage() {
