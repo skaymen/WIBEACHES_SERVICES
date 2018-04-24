@@ -4,6 +4,8 @@ import java.util.LinkedHashMap;
 
 import javax.sql.DataSource;
 
+import gov.usgs.wim.wdnr.dao.EcoliSampleTypeHandler;
+import gov.usgs.wim.wdnr.dao.EstActFlagTypeHandler;
 import gov.usgs.wim.wdnr.dao.StringBooleanTypeHandler;
 import gov.usgs.wim.wdnr.domain.SanitaryData;
 import org.apache.ibatis.type.TypeAliasRegistry;
@@ -48,6 +50,8 @@ public class MybatisConfig {
     private void registerAliases(TypeAliasRegistry registry) {
         registry.registerAlias(LINKED_HASH_MAP_ALIAS, LinkedHashMap.class);
         registry.registerAlias("SanitaryData", SanitaryData.class);
+        registry.registerAlias("EstActFlagTypeHandler", EstActFlagTypeHandler.class);
+        registry.registerAlias("EcoliSampleTypeHandler", EcoliSampleTypeHandler.class);
     }
 
     private void registerTypeHandlers(TypeHandlerRegistry registry) {
