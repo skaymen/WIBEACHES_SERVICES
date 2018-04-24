@@ -1387,12 +1387,12 @@ public class SanitaryData {
         }
     }
 
-    public void addValidatorResult(final ValidatorResult inValidatorResult) {
-        if (null == validationErrors) {
-            validationErrors = new ValidationResults();
-        }
-        validationErrors.addValidatorResult(inValidatorResult);
-    }
+//    public void addValidatorResult(final ValidatorResult inValidatorResult) {
+//        if (null == validationErrors) {
+//            validationErrors = new ValidationResults();
+//        }
+//        validationErrors.addValidatorResult(inValidatorResult);
+//    }
 
 
 
