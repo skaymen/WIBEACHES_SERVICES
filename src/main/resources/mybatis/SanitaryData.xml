@@ -22,7 +22,7 @@
             values(
                 #{beachSeq, jdbcType=INTEGER},
                 #{monitorSiteSeq, jdbcType=INTEGER},
-                #{ecoliSampleType, jdbcType=VARCHAR},
+                #{ecoliSampleType, jdbcType=VARCHAR, typeHandler=EcoliSampleTypeHandler},
                 #{sampleDateTime, jdbcType=DATE},
                 #{noGulls, jdbcType=INTEGER},
                 #{noGeese, jdbcType=INTEGER},
@@ -83,7 +83,7 @@
                 #{rainfallStdDesc, jdbcType=VARCHAR},
                 #{waveHeight, jdbcType=NUMERIC},
                 #{waveHeightUnits, jdbcType=VARCHAR},
-                #{estActFlag, jdbcType=VARCHAR},
+                #{estActFlag, jdbcType=VARCHAR, typeHandler=EstActFlagTypeHandler},
                 #{waveDirection, jdbcType=VARCHAR},
                 #{waveConditions, jdbcType=VARCHAR},
                 #{currentSpeed, jdbcType=INTEGER},

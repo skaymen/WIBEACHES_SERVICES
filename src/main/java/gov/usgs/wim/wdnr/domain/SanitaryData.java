@@ -65,15 +65,13 @@ public class SanitaryData {
     private String monitorSiteSeq;
 
     @JsonAlias("ECOLI_SAMPLE_TYPE")
-    @Length(min=0, max=30)
-    private String ecoliSampleType;
+    private Boolean ecoliSampleType;
 
     @JsonAlias("SAMPLE_DATE_TIME_DISPLAYED")
     @Length(min=0, max=50)
     private String sampleDateTimeDisplayed;
 
     @JsonAlias("SAMPLE_DATE_TIME")
-//    @Temporal(TemporalType.DATE) //TODO: Fix this
     @NotNull(message="You must provide a sample date and time for this record")
     private LocalDateTime sampleDateTime;
 
@@ -489,7 +487,7 @@ public class SanitaryData {
         this.monitorSiteSeq = monitorSiteSeq;
     }
 
-    public void setEcoliSampleType(String ecoliSampleType) {
+    public void setEcoliSampleType(Boolean ecoliSampleType) {
         this.ecoliSampleType = ecoliSampleType;
     }
 
@@ -945,7 +943,7 @@ public class SanitaryData {
         return monitorSiteSeq;
     }
 
-    public String getEcoliSampleType() {
+    public Boolean getEcoliSampleType() {
         return ecoliSampleType;
     }
 
