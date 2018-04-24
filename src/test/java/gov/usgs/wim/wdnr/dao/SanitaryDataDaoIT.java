@@ -173,13 +173,13 @@ public class SanitaryDataDaoIT {
         SanitaryData sd = new SanitaryData();
         sd.setBeachSeq("120");
         sd.setMonitorSiteSeq("135");
-        sd.setEcoliSampleType("a");
+        sd.setEcoliSampleType(true);
         sd.setSampleDateTime(LocalDateTime.of(2018, 04, 03, 15, 27, 8));
         sd.setNoGulls("99");
         sd.setNoGeese("2");
         sd.setNoDogs("3");
         sd.setNoAnimalsOther("98");
-        sd.setNoAnimalsOtherDesc("Abd");
+        sd.setAnimalsOtherDesc("Abd");
         sd.setNumLoons("5");
         sd.setNumHerrGulls("6");
         sd.setNumRingGulls("7");
@@ -188,7 +188,7 @@ public class SanitaryDataDaoIT {
         sd.setNumScoter("10");
         sd.setNumHornGrebe("11");
         sd.setNumRedneckedGrebe("12");
-        sd.setNumFish("13"); //deadfish
+        sd.setNumDeadFish("13"); //deadfish
         sd.setNumOther("14");
         sd.setNumOtherDesc("deg");
         sd.setFloatStreetLitter(true);
@@ -226,7 +226,7 @@ public class SanitaryDataDaoIT {
         sd.setWindSpeedUnits("KPH");
         sd.setWindDirDegrees("25");
         sd.setWindDirDesc("SW");
-        sd.setWeatherDes("XX");
+        sd.setWeatherDesc("XX");
         sd.setRainfallLastEvent(">54");
         sd.setRainfall("26");
         sd.setRainfallUnits("cm");
@@ -247,7 +247,7 @@ public class SanitaryDataDaoIT {
         sd.setAvgWaterTemp("30");
         sd.setAvgWaterTempUnits("X");
         sd.setClarityDesc("muddy");
-        sd.setNTU("31");
+        sd.setNtu("31");
         sd.setSecchiTubeCm("32");
         sd.setAlgaeNearShore("3-50%");
         sd.setAlgaeOnBeach("5-30%");

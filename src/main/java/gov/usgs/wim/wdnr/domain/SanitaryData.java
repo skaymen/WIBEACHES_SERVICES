@@ -551,7 +551,7 @@ public class SanitaryData {
         this.numRedneckedGrebe = numRedneckedGrebe;
     }
 
-    public void setnumDeadFish(String numDeadFish) {
+    public void setNumDeadFish(String numDeadFish) {
         this.numDeadFish = numDeadFish;
     }
 
@@ -1007,7 +1007,7 @@ public class SanitaryData {
         return numRedneckedGrebe;
     }
 
-    public String getnumDeadFish() {
+    public String getNumDeadFish() {
         return numDeadFish;
     }
 
