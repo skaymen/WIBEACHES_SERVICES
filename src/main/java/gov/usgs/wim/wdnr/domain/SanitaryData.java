@@ -93,9 +93,9 @@ public class SanitaryData {
     @Digits(integer=8, fraction=0)
     private String noAnimalsOther;
 
-    @JsonAlias("NO_ANIMALS_OTHER_DESC") //??
+    @JsonAlias("ANIMALS_OTHER_DESC")
     @Length(min=0, max=50)
-    private String noAnimalsOtherDesc;
+    private String animalsOtherDesc;
 
     @JsonAlias("NUM_LOONS")
     @Digits(integer=8, fraction=0)
@@ -129,9 +129,9 @@ public class SanitaryData {
     @Digits(integer=8, fraction=0)
     private String numRedneckedGrebe;
 
-    @JsonAlias("NUM_FISH") //???
+    @JsonAlias("NUM_DEAD_FISH") //???
     @Digits(integer=8, fraction=0)
-    private String numFish;
+    private String numDeadFish;
 
     @JsonAlias("NUM_OTHER")
     @Digits(integer=8, fraction=0)
@@ -268,9 +268,9 @@ public class SanitaryData {
     @Length(min=0, max=30)
     private String windDirDesc;
 
-    @JsonAlias("WEATHER_DES")
+    @JsonAlias("WEATHER_DESC")
     @Length(min=0, max=30)
-    private String weatherDes;
+    private String weatherDesc;
 
     @JsonAlias("RAINFALL_LAST_EVENT")
     @Length(min=0, max=5)
@@ -352,7 +352,7 @@ public class SanitaryData {
 
     @JsonAlias("NTU")
     @Digits(integer=10, fraction=2)
-    private String NTU;
+    private String ntu;
 
     @JsonAlias("SECCHI_TUBE_CM")
     @Digits(integer=8, fraction=0)
@@ -517,8 +517,8 @@ public class SanitaryData {
         this.noAnimalsOther = noAnimalsOther;
     }
 
-    public void setNoAnimalsOtherDesc(String noAnimalsOtherDesc) {
-        this.noAnimalsOtherDesc = noAnimalsOtherDesc;
+    public void setAnimalsOtherDesc(String animalsOtherDesc) {
+        this.animalsOtherDesc = animalsOtherDesc;
     }
 
     public void setNumLoons(String numLoons) {
@@ -553,8 +553,8 @@ public class SanitaryData {
         this.numRedneckedGrebe = numRedneckedGrebe;
     }
 
-    public void setNumFish(String numFish) {
-        this.numFish = numFish;
+    public void setnumDeadFish(String numDeadFish) {
+        this.numDeadFish = numDeadFish;
     }
 
     public void setNumOther(String numOther) {
@@ -709,8 +709,8 @@ public class SanitaryData {
         this.windDirDesc = windDirDesc;
     }
 
-    public void setWeatherDes(String weatherDes) {
-        this.weatherDes = weatherDes;
+    public void setWeatherDesc(String weatherDesc) {
+        this.weatherDesc = weatherDesc;
     }
 
     public void setRainfallLastEvent(String rainfallLastEvent) {
@@ -793,8 +793,8 @@ public class SanitaryData {
         this.clarityDesc = clarityDesc;
     }
 
-    public void setNTU(String NTU) {
-        this.NTU = NTU;
+    public void setNtu(String ntu) {
+        this.ntu = ntu;
     }
 
     public void setSecchiTubeCm(String secchiTubeCm) {
@@ -973,8 +973,8 @@ public class SanitaryData {
         return noAnimalsOther;
     }
 
-    public String getNoAnimalsOtherDesc() {
-        return noAnimalsOtherDesc;
+    public String getAnimalsOtherDesc() {
+        return animalsOtherDesc;
     }
 
     public String getNumLoons() {
@@ -1009,8 +1009,8 @@ public class SanitaryData {
         return numRedneckedGrebe;
     }
 
-    public String getNumFish() {
-        return numFish;
+    public String getnumDeadFish() {
+        return numDeadFish;
     }
 
     public String getNumOther() {
@@ -1165,8 +1165,8 @@ public class SanitaryData {
         return windDirDesc;
     }
 
-    public String getWeatherDes() {
-        return weatherDes;
+    public String getWeatherDesc() {
+        return weatherDesc;
     }
 
     public String getRainfallLastEvent() {
@@ -1249,8 +1249,8 @@ public class SanitaryData {
         return clarityDesc;
     }
 
-    public String getNTU() {
-        return NTU;
+    public String getNtu() {
+        return ntu;
     }
 
     public String getSecchiTubeCm() {
