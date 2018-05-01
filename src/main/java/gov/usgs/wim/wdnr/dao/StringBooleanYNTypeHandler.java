@@ -1,17 +1,17 @@
 package gov.usgs.wim.wdnr.dao;
 
+import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.type.TypeHandler;
+
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.apache.ibatis.type.JdbcType;
-import org.apache.ibatis.type.TypeHandler;
-
-public class StringBooleanTypeHandler implements TypeHandler<Boolean> {
+public class StringBooleanYNTypeHandler implements TypeHandler<Boolean> {
 
     public static final String TRUE = "Y";
-    public static final String FALSE = null;
+    public static final String FALSE = "N";
 
     @Override
     public Boolean getResult(ResultSet arg0, String arg1) throws SQLException {

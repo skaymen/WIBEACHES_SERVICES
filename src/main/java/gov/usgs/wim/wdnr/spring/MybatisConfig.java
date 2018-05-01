@@ -4,9 +4,7 @@ import java.util.LinkedHashMap;
 
 import javax.sql.DataSource;
 
-import gov.usgs.wim.wdnr.dao.EcoliSampleTypeHandler;
-import gov.usgs.wim.wdnr.dao.EstActFlagTypeHandler;
-import gov.usgs.wim.wdnr.dao.StringBooleanTypeHandler;
+import gov.usgs.wim.wdnr.dao.*;
 import gov.usgs.wim.wdnr.domain.SanitaryData;
 import org.apache.ibatis.type.TypeAliasRegistry;
 import org.apache.ibatis.type.TypeHandlerRegistry;
@@ -52,6 +50,11 @@ public class MybatisConfig {
         registry.registerAlias("SanitaryData", SanitaryData.class);
         registry.registerAlias("EstActFlagTypeHandler", EstActFlagTypeHandler.class);
         registry.registerAlias("EcoliSampleTypeHandler", EcoliSampleTypeHandler.class);
+        registry.registerAlias("StringBooleanYNTypeHandler", StringBooleanYNTypeHandler.class);
+        registry.registerAlias("PercentTypeHandler", PercentTypeHandler.class);
+        registry.registerAlias("AllCapsTypeHandler", AllCapsTypeHandler.class);
+        registry.registerAlias("WeatherDescTypeHandler", WeatherDescTypeHandler.class);
+        registry.registerAlias("UnitsTypeHandler", UnitsTypeHandler.class);
     }
 
     private void registerTypeHandlers(TypeHandlerRegistry registry) {
