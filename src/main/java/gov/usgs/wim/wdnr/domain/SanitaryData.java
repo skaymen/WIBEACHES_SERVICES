@@ -426,9 +426,6 @@ public class SanitaryData {
 //    @Basic //TODO
     private LocalDateTime dateUpdated;
 
-    @JsonAlias("MISSING_REQUIRED_FLAG")
-    private Boolean missingRequiredFlag;
-
     @JsonAlias("vPages")
     @Length(min=0, max=50)
     private String vPages;
@@ -877,10 +874,6 @@ public class SanitaryData {
 
     public void setDateUpdated(LocalDateTime dateUpdated) {
         this.dateUpdated = dateUpdated;
-    }
-
-    public void setMissingRequiredFlag(Boolean missingRequiredFlag) {
-        this.missingRequiredFlag = missingRequiredFlag;
     }
 
     public void setvPages(String vPages) {
@@ -1333,10 +1326,6 @@ public class SanitaryData {
 
     public LocalDateTime getDateUpdated() {
         return dateUpdated;
-    }
-
-    public Boolean getMissingRequiredFlag() {
-        return missingRequiredFlag;
     }
 
     public String getvPages() {
