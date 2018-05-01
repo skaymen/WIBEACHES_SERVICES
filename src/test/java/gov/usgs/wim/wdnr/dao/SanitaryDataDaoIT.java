@@ -53,7 +53,7 @@ public class SanitaryDataDaoIT {
             "air_temp,air_units,wind_speed,wind_speed_units,wind_dir_degrees," +
             "wind_dir_desc,weather_desc,rainfall_last_event,rainfall," +
             "rainfall_units,rainfall_stn_desc,wave_height,wave_height_units," +
-            "est_act_flag,wave_direction,wave_conditions,current_speed," +
+            "est_act_flag,wave_direction,wave_intensity,current_speed," +
             "longshore_current_units,shoreline_current_dir,ph,color_change," +
             "color_description,odor_description,odor_other_description," +
             "avg_water_temp,avg_water_temp_units,clarity_desc,ntu," +
@@ -64,7 +64,7 @@ public class SanitaryDataDaoIT {
             "algae_color_drk_green,algae_color_yellow,algae_color_brown," +
             "algae_color_other,algae_color_other_desc,part_1_comments," +
             "part2_comments,part3_comments,part4_comments," +
-            "missing_required_flag, sampler_seq, data_entry_seq from " +
+            "sampler_seq, data_entry_seq from " +
             "sanitary_data_fact";
 
     @Autowired
@@ -210,7 +210,7 @@ public class SanitaryDataDaoIT {
         sd.setDebrisOil(true);
         sd.setDebrisOther(true);
         sd.setDebrisOtherDesc("asde");
-        sd.setDebrisAmount("22-50%");
+        sd.setDebrisAmount("1-20%");
         sd.setNoInWater("15");
         sd.setNumOutOfWater("16");
         sd.setNoPeopleBoating("17");
@@ -249,8 +249,8 @@ public class SanitaryDataDaoIT {
         sd.setClarityDesc("muddy");
         sd.setNtu("31");
         sd.setSecchiTubeCm("32");
-        sd.setAlgaeNearShore("3-50%");
-        sd.setAlgaeOnBeach("5-30%");
+        sd.setAlgaeNearShore("1-20%");
+        sd.setAlgaeOnBeach("1-20%");
         sd.setAlgaeTypePeriphyton(true);
         sd.setAlgaeTypeGlobular(true);
         sd.setAlgaeTypeFreefloating(true);
@@ -267,7 +267,6 @@ public class SanitaryDataDaoIT {
         sd.setPart2Coments("cmt2");
         sd.setPart3Comments("cmt3");
         sd.setPart4Comments("cmt4");
-        sd.setMissingRequiredFlag(true);
         sd.setSamplerSeq(33);
         sd.setDataEntrySeq(34);
         sanitaryDataDao.create(sd);

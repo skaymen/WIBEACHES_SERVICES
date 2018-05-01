@@ -6,22 +6,21 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.BDDMockito.given;
-
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.verify;
 
-public class StringBooleanTypeHandlerTest {
+public class StringBooleanYNTypeHandlerTest {
 
-    private StringBooleanTypeHandler handler;
+    private StringBooleanYNTypeHandler handler;
 
     @Mock
     private PreparedStatement ps;
@@ -34,7 +33,7 @@ public class StringBooleanTypeHandlerTest {
 
     @Before
     public void setup() {
-        handler = new StringBooleanTypeHandler();
+        handler = new StringBooleanYNTypeHandler();
         MockitoAnnotations.initMocks(this);
     }
 
@@ -47,13 +46,13 @@ public class StringBooleanTypeHandlerTest {
     @Test
     public void setParameterFalseTest() throws SQLException {
         handler.setParameter(ps, 0, false, JdbcType.CHAR);
-        verify(ps).setString(0, null);
+        verify(ps).setString(0, "N");
     }
 
     @Test
     public void setParameterNullTest() throws SQLException {
         handler.setParameter(ps, 0, null, JdbcType.CHAR);
-        verify(ps).setString(0, null);
+        verify(ps).setString(0, "N");
     }
 
     @Test
