@@ -28,7 +28,10 @@ public class AllCapsTypeHandler implements TypeHandler<String> {
 
     @Override
     public void setParameter(PreparedStatement arg0, int arg1, String arg2, JdbcType arg3) throws SQLException {
-        arg0.setString(arg1, arg2.toUpperCase());
+        if (null != arg2)
+            arg0.setString(arg1, arg2.toUpperCase());
+        else
+            arg0.setString(arg1, arg2);
     }
 
 }
