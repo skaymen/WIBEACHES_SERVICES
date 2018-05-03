@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
@@ -50,6 +51,7 @@ public class PercentTypeHandlerTest {
 
     @Test
     public void testConvertResult() {
+        assertNull(handler.convertResult(null));
         assertEquals("None", handler.convertResult("NONE"));
         assertEquals("1-20%", handler.convertResult("LOW"));
         assertEquals("21-50%", handler.convertResult("MODERATE"));
@@ -58,6 +60,7 @@ public class PercentTypeHandlerTest {
 
     @Test
     public void testConvertParam() {
+        assertNull(handler.convertParam(null));
         assertEquals("NONE", handler.convertParam("None"));
         assertEquals("LOW", handler.convertParam("1-20%"));
         assertEquals("MODERATE", handler.convertParam("21-50%"));
@@ -66,6 +69,8 @@ public class PercentTypeHandlerTest {
 
     @Test
     public void getResultStrTest() throws SQLException {
+        given(rs.getString(anyString())).willReturn(null);
+        assertNull(handler.getResult(rs, "colname"));
         given(rs.getString(anyString())).willReturn("NONE");
         assertEquals("None", handler.getResult(rs, "colname"));
         given(rs.getString(anyString())).willReturn("LOW");
@@ -79,6 +84,8 @@ public class PercentTypeHandlerTest {
 
     @Test
     public void getResultIntTest() throws SQLException {
+        given(rs.getString(anyInt())).willReturn(null);
+        assertNull(handler.getResult(rs, 23));
         given(rs.getString(anyInt())).willReturn("NONE");
         assertEquals("None", handler.getResult(rs, 23));
         given(rs.getString(anyInt())).willReturn("LOW");
@@ -91,6 +98,8 @@ public class PercentTypeHandlerTest {
 
     @Test
     public void getResultCallableTest() throws SQLException {
+        given(cs.getString(anyInt())).willReturn(null);
+        assertNull(handler.getResult(cs, 23));
         given(cs.getString(anyInt())).willReturn("NONE");
         assertEquals("None", handler.getResult(cs, 23));
         given(cs.getString(anyInt())).willReturn("LOW");

@@ -33,10 +33,15 @@ import io.swagger.annotations.Api;
 @RequestMapping("/sanitaryData")
 public class SanitaryDataController {
 
-    @Autowired
     private SanitaryDataDao sDao;
-    @Autowired
     private Validator validator;
+
+    @Autowired
+    public SanitaryDataController(final SanitaryDataDao sDao, final Validator validator) {
+        this.sDao = sDao;
+        this.validator =  validator;
+    }
+
 
     private static final Logger log = LoggerFactory.getLogger(SanitaryDataController.class);
 
@@ -80,13 +85,11 @@ public class SanitaryDataController {
         int userid = 433;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (null != authentication && !(authentication instanceof AnonymousAuthenticationToken)) {
-            System.out.println("hi");
             String username = authentication.getName();
             log.debug(username);
             //call our to table to get user id
             // through new dao method
             userid = sDao.getUserid(username);
-            System.out.println(userid);
         }
         return userid;
     }

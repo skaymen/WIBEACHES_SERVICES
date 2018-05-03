@@ -52,6 +52,12 @@ public class AllCapsTypeHandlerTest {
     }
 
     @Test
+    public void setParameterNullTest() throws SQLException {
+        handler.setParameter(ps, 0, null, JdbcType.CHAR);
+        verify(ps).setString(0, null);
+    }
+
+    @Test
     public void getResultStrTest() throws SQLException {
         given(rs.getString(anyString())).willReturn("string");
         assertEquals("string", handler.getResult(rs, "colname"));
