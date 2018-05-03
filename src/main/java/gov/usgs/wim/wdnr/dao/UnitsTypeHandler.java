@@ -11,6 +11,7 @@ import java.sql.SQLException;
 public class UnitsTypeHandler implements TypeHandler<String> {
 
     public String convert(String val) {
+        if (val == null) return null;
         if (val.equals("MPH"))
             val = "mph";
         if (val.equals("FT"))

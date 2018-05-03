@@ -30,6 +30,9 @@ public class WeatherDescTypeHandler implements TypeHandler<String> {
 
     @Override
     public void setParameter(PreparedStatement arg0, int arg1, String arg2, JdbcType arg3) throws SQLException {
-        arg0.setString(arg1, WordUtils.capitalize(arg2));
+        if (arg2 != null)
+            arg0.setString(arg1, WordUtils.capitalize(arg2));
+        else
+            arg0.setString(arg1, arg2);
     }
 }

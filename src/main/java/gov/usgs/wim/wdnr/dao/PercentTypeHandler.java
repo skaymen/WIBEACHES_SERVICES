@@ -21,6 +21,7 @@ public class PercentTypeHandler implements TypeHandler<String> {
     public static final String H = ">50%";
 
     public String convertResult(String dbval) {
+        if (dbval == null) return null;
         if (dbval.equals(NONE))
             return N;
         else if (dbval.equals(LOW))
@@ -34,6 +35,7 @@ public class PercentTypeHandler implements TypeHandler<String> {
     }
 
     public String convertParam(String val) {
+        if (val == null) return null;
         if (val.equalsIgnoreCase(N))
             return NONE;
         else if (val.equalsIgnoreCase(L))
