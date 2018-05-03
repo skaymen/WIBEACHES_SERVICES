@@ -301,9 +301,9 @@ public class SanitaryData {
     @Length(min=0, max=10)
     private String waveDirection;
 
-    @JsonAlias("WAVE_CONDITIONS")
+    @JsonAlias("WAVE_INTENSITY")
     @Length(min=0, max=30)
-    private String waveConditions;
+    private String waveIntensity;
 
     @JsonAlias("CURRENT_SPEED")
     @Digits(integer=8, fraction=0)
@@ -740,8 +740,8 @@ public class SanitaryData {
         this.waveDirection = waveDirection;
     }
 
-    public void setWaveConditions(String waveConditions) {
-        this.waveConditions = waveConditions;
+    public void setWaveIntensity(String waveIntensity) {
+        this.waveIntensity = waveIntensity;
     }
 
     public void setCurrentSpeed(String currentSpeed) {
@@ -1192,8 +1192,8 @@ public class SanitaryData {
         return waveDirection;
     }
 
-    public String getWaveConditions() {
-        return waveConditions;
+    public String getWaveIntensity() {
+        return waveIntensity;
     }
 
     public String getCurrentSpeed() {
