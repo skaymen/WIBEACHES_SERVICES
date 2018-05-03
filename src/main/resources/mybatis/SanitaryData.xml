@@ -2,8 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="beachesSanitaryData">
 
-    <!--note that wave_conditions in the mobile app intentionally maps to wave_intensity in the database-->
-
     <insert id="create" parameterType="SanitaryData">
         insert into sanitary_data_fact(BEACH_SEQ, MONITOR_SITE_SEQ, ECOLI_SAMPLE_TYPE, SAMPLE_DATE_TIME, NO_GULLS,
         NO_GEESE, NO_DOGS, NO_ANIMALS_OTHER, ANIMALS_OTHER_DESC, NUM_LOONS, NUM_HERR_GULLS, NUM_RING_GULLS,
@@ -15,7 +13,7 @@
         NO_PEOPLE_SURFING, NO_PEOPLE_WINDSURFING, NO_PEOPLE_DIVING, NO_PEOPLE_CLAMMING, NO_PEOPLE_OTHER,
         NO_PEOPLE_OTHER_DESC, AIR_TEMP, AIR_UNITS, WIND_SPEED, WIND_SPEED_UNITS, WIND_DIR_DEGREES, WIND_DIR_DESC,
         WEATHER_DESC, RAINFALL_LAST_EVENT, RAINFALL, RAINFALL_UNITS, RAINFALL_STN_DESC, WAVE_HEIGHT, WAVE_HEIGHT_UNITS,
-        EST_ACT_FLAG, WAVE_DIRECTION, WAVE_CONDITIONS, CURRENT_SPEED, LONGSHORE_CURRENT_UNITS, SHORELINE_CURRENT_DIR,
+        EST_ACT_FLAG, WAVE_DIRECTION, WAVE_INTENSITY, CURRENT_SPEED, LONGSHORE_CURRENT_UNITS, SHORELINE_CURRENT_DIR,
         PH, COLOR_CHANGE, COLOR_DESCRIPTION, ODOR_DESCRIPTION, ODOR_OTHER_DESCRIPTION, AVG_WATER_TEMP,
         AVG_WATER_TEMP_UNITS, CLARITY_DESC, NTU, SECCHI_TUBE_CM, ALGAE_NEARSHORE, ALGAE_ON_BEACH, ALGAE_TYPE_PERIPHYTON,
         ALGAE_TYPE_GLOBULAR, ALGAE_TYPE_FREEFLOATING, ALGAE_TYPE_OTHER, ALGAE_TYPE_OTHER_DESC, ALGAE_COLOR_LT_GREEN,
@@ -88,7 +86,7 @@
                 #{waveHeightUnits, jdbcType=VARCHAR, typeHandler=UnitsTypeHandler},
                 #{estActFlag, jdbcType=VARCHAR, typeHandler=EstActFlagTypeHandler},
                 #{waveDirection, jdbcType=VARCHAR},
-                #{waveConditions, jdbcType=VARCHAR},
+                #{waveIntensity, jdbcType=VARCHAR},
                 #{currentSpeed, jdbcType=INTEGER},
                 #{longshoreCurrentUnits, jdbcType=VARCHAR},
                 #{shorelineCurrentDir, jdbcType=VARCHAR},
