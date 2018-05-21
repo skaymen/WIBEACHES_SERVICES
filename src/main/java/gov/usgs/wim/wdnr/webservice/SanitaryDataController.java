@@ -67,6 +67,22 @@ public class SanitaryDataController {
                 log.debug("id before = " + sd.get(i).getIdNo());
                 sd.get(i).setSamplerSeq(userid);
                 sd.get(i).setDataEntrySeq(userid);
+
+                if (sd.get(i).getFloatStreetLitter() == true
+                        || sd.get(i).getFloatStreetLitter() == true
+                        || sd.get(i).getFloatFood() == true
+                        || sd.get(i).getFloatMedical() == true
+                        || sd.get(i).getFloatSewage() == true
+                        || sd.get(i).getFloatBldgMaterials() == true
+                        || sd.get(i).getFloatFishing() == true
+                        || sd.get(i).getFloatOther() == true )
+                {sd.get(i).setFloatablesFlag(true);}
+
+                if (sd.get(i).getWindSpeed() == null && sd.get(i).getWindDirDesc().equals("Calm"))
+                    sd.get(i).setWindDirDesc(null);
+                else if (sd.get(i).getWindSpeed() != null && sd.get(i).getWindDirDesc().equals("Calm"))
+                    sd.get(i).setWindDirDesc("Calm, no direction");
+
                 sDao.create(sd.get(i));
                 response.setStatus(HttpStatus.CREATED.value());
             }
