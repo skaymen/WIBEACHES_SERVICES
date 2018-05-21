@@ -68,6 +68,7 @@ public class SanitaryDataController {
             }
         }
         if (noErrors) {
+            System.out.println(sd.size());
             for (int i = 0; i < sd.size(); i++) {
                 log.debug("id before = " + sd.get(i).getIdNo());
                 sd.get(i).setSamplerSeq(userid);

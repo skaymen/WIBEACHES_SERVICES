@@ -235,7 +235,7 @@ public class SanitaryDataDaoIT {
         sd.setWaveHeightUnits("meters");
         sd.setEstActFlag(true);
         sd.setWaveDirection("V");
-        sd.setWaveConditions("abnormal");
+        sd.setWaveIntensity("abnormal");
         sd.setCurrentSpeed("28");
         sd.setLongshoreCurrentUnits("m/sec");
         sd.setShorelineCurrentDir("NW");
