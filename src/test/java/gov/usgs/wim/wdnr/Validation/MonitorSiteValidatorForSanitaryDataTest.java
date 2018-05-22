@@ -6,25 +6,20 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.powermock.reflect.Whitebox;
 
 import javax.validation.ConstraintValidatorContext;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Matchers.anyObject;
-import static org.mockito.Mockito.verify;
-import org.powermock.reflect.Whitebox;
 
-public class BeachSeqValidatorForSanitaryDataTest {
+public class MonitorSiteValidatorForSanitaryDataTest {
 
     @Mock
     protected SanitaryDataDao dao;
 
-    private BeachSeqValidatorForSanitaryData bsv;
+    private MonitorSiteValidatorForSanitaryData msv;
 
     @Mock
     private SanitaryData value;
@@ -34,21 +29,20 @@ public class BeachSeqValidatorForSanitaryDataTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        bsv = new BeachSeqValidatorForSanitaryData();
-        Whitebox.setInternalState(bsv, "dao", dao);
+        msv = new MonitorSiteValidatorForSanitaryData();
+        Whitebox.setInternalState(msv, "dao", dao);
     }
 
     @Test
     public void isValidTrueTest() {
-        assertTrue(bsv.isValid(null, null));
+        assertTrue(msv.isValid(null, null));
     }
 
     @Test
     public void isValidFalseTest() {
         given(value.getBeachSeq()).willReturn("2");
-        assertFalse(bsv.isValid(value, context));
+        given(value.getMonitorSiteSeq()).willReturn("79");
+        assertFalse(msv.isValid(value, context));
 
     }
-
-
 }
