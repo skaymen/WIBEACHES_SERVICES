@@ -55,7 +55,6 @@ public class MybatisConfig {
         registry.registerAlias("AllCapsTypeHandler", AllCapsTypeHandler.class);
         registry.registerAlias("WeatherDescTypeHandler", WeatherDescTypeHandler.class);
         registry.registerAlias("UnitsTypeHandler", UnitsTypeHandler.class);
-        registry.registerAlias("CommentsTypeHandler", CommentsTypeHandler.class);
     }
 
     private void registerTypeHandlers(TypeHandlerRegistry registry) {
