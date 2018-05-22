@@ -447,6 +447,8 @@ public class SanitaryData {
     @Digits(integer=8, fraction=0)
     private int dataEntrySeq;
 
+    private Boolean floatablesFlag;
+
 
     public void setUserName(String userName) {
         this.userName = userName;
@@ -900,6 +902,8 @@ public class SanitaryData {
         this.dataEntrySeq = dataEntrySeq;
     }
 
+    public void setFloatablesFlag(Boolean floatablesFlag) {this.floatablesFlag = floatablesFlag;}
+
     public String getUserName() {
         return userName;
     }
@@ -1351,6 +1355,8 @@ public class SanitaryData {
     public int getDataEntrySeq() {
         return dataEntrySeq;
     }
+
+    public Boolean getFloatablesFlag() {return floatablesFlag;}
 
     @JsonView(Views.Response.class)
     public ValidationResults getValidationErrors() {
