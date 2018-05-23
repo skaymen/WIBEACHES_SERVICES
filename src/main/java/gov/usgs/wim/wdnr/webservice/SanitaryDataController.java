@@ -54,22 +54,21 @@ public class SanitaryDataController {
     @JsonView(Views.Response.class)
     public List<SanitaryData> createSanitaryData(@RequestBody List<SanitaryData> sd, HttpServletResponse response) throws IOException {
         int userid = getUserid();
-//        sd.setCreatedBy(getUsername());//?
-//        sd.setUpdatedBy(getUsername());//?
         boolean noErrors = true;
         for (int i = 0; i < sd.size(); i++) {
+            // make into own method
             Set<ConstraintViolation<SanitaryData>> errors = validator.validate(sd.get(i));
             sd.get(i).setValidationErrors(errors);
             if (!errors.isEmpty()) {
                 noErrors = false;
-
-//            return sDao.getById(newId);
                 response.setStatus(400);
             }
+            //end method
         }
         if (noErrors) {
             System.out.println(sd.size());
             for (int i = 0; i < sd.size(); i++) {
+                //separate into own method
                 log.debug("id before = " + sd.get(i).getIdNo());
                 sd.get(i).setSamplerSeq(userid);
                 sd.get(i).setDataEntrySeq(userid);
@@ -101,6 +100,7 @@ public class SanitaryDataController {
 
                 sDao.create(sd.get(i));
                 response.setStatus(HttpStatus.CREATED.value());
+                //end method
             }
         }
 

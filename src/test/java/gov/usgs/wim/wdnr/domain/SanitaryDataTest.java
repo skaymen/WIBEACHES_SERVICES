@@ -1,6 +1,8 @@
 package gov.usgs.wim.wdnr.domain;
 
 import gov.usgs.wim.wdnr.dao.StringBooleanTypeHandler;
+import org.hibernate.validator.internal.engine.ConstraintViolationImpl;
+import org.hibernate.validator.internal.engine.path.PathImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -9,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import javax.validation.ConstraintViolation;
+import javax.validation.Path;
 import javax.validation.Validator;
+import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -55,7 +59,9 @@ public class SanitaryDataTest {
 
         SanitaryData sd = new SanitaryData();
         //TODO: fix this
-        Set<ConstraintViolation<SanitaryData>> cv = validator.validate(sd);
+        ConstraintViolation<SanitaryData> cvsd = ConstraintViolationImpl.forBeanValidation("x", null, null, null, null, null, null, PathImpl.createPathFromString("x"), null, null, null);
+        Set<ConstraintViolation<SanitaryData>> cv = new HashSet<>();
+        cv.add(cvsd);
         sd.setValidationErrors(cv);
         ValidationResults vr = sd.getValidationErrors();
         assertEquals(ReflectionTestUtils.getField(sd, "validationErrors"), vr);
