@@ -85,11 +85,11 @@ public class SanitaryDataController {
                     sd.get(i).setWindDirDesc("Calm, no direction");
                 }
 
-                if (sd.get(i).getPart1Comments().equals(";")) {
+                if (sd.get(i).getPart1Comments().equals("; ")) {
                     sd.get(i).setPart1Comments(null);
                 }
 
-                if (sd.get(i).getPart4Comments().equals(";;;;")) {
+                if (sd.get(i).getPart4Comments().equals("; ; ; ; ")) {
                     sd.get(i).setPart4Comments(null);
                 }
 
