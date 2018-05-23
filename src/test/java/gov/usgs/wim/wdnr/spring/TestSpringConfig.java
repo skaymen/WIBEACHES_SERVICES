@@ -2,6 +2,7 @@ package gov.usgs.wim.wdnr.spring;
 
 import javax.sql.DataSource;
 
+import gov.usgs.wim.wdnr.dao.SanitaryDataDao;
 import oracle.jdbc.pool.OracleDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +16,8 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import java.sql.SQLException;
+
+import static org.mockito.Mockito.mock;
 
 @Configuration
 @Import(MybatisConfig.class)
@@ -32,5 +35,10 @@ public class TestSpringConfig {
 		ds.setPassword(env.getProperty("jdbc.wibeaches.password"));
 		return ds;
 	}
+
+	@Bean
+	public SanitaryDataDao sanitaryDataDao() {
+		return mock(SanitaryDataDao.class);
+	};
 
 }
