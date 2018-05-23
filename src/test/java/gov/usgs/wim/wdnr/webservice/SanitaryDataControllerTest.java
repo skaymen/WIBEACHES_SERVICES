@@ -77,24 +77,7 @@ public class SanitaryDataControllerTest {
         assertEquals(500, controller.getUserid());
     }
 
-    @Test //TODO not sure how to make the size of sd > 0
-    public void createSanitaryDataNoErrorsTest() throws IOException {
-//        sd.add(san);
-//        controller.createSanitaryData(sd, response);
-//        verify(sd).get(anyInt()).setSamplerSeq(anyInt());
-//        verify(sd).get(anyInt()).setDataEntrySeq(anyInt());
-//        verify(sanitaryDataDao).create(sd.get(anyInt()));
-//        verify(response).setStatus(anyInt());
-        assertEquals(sd, controller.createSanitaryData(sd, response));
-    }
 
-//    @Test //TODO not sure how to make this actually return errors
-//    public void createSanitaryDataErrorsTest() throws IOException {
-//        given(validator.validate(sd.get(anyInt()))).willReturn(errors);
-//        controller.createSanitaryData(sd, response);
-//        verify(validator).validate(sd.get(anyInt()));
-//        verify(response).setStatus(anyInt());
-//    }
 
 
 }

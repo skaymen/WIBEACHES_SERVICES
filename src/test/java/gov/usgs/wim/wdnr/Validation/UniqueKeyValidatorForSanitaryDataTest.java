@@ -6,20 +6,22 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.powermock.reflect.Whitebox;
 
 import javax.validation.ConstraintValidatorContext;
+
+import java.time.LocalDateTime;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.mockito.BDDMockito.given;
-import org.powermock.reflect.Whitebox;
 
-public class BeachSeqValidatorForSanitaryDataTest {
+public class UniqueKeyValidatorForSanitaryDataTest {
 
     @Mock
     protected SanitaryDataDao dao;
 
-    private BeachSeqValidatorForSanitaryData bsv;
+    private UniqueKeyValidatorForSanitaryData ukv;
 
     @Mock
     private SanitaryData value;
@@ -29,21 +31,21 @@ public class BeachSeqValidatorForSanitaryDataTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        bsv = new BeachSeqValidatorForSanitaryData();
-        Whitebox.setInternalState(bsv, "dao", dao);
+        ukv = new UniqueKeyValidatorForSanitaryData();
+        Whitebox.setInternalState(ukv, "dao", dao);
     }
 
     @Test
     public void isValidTrueTest() {
-        assertTrue(bsv.isValid(null, null));
+        assertTrue(ukv.isValid(null, null));
     }
 
     @Test
     public void isValidFalseTest() {
         given(value.getBeachSeq()).willReturn("2");
-        assertFalse(bsv.isValid(value, context));
+        given(value.getSampleDateTime()).willReturn(LocalDateTime.now());
+        assertFalse(ukv.isValid(value, context));
 
     }
-
 
 }

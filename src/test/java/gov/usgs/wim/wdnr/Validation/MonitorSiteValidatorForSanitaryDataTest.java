@@ -6,13 +6,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.powermock.reflect.Whitebox;
 
 import javax.validation.ConstraintValidatorContext;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.anyMap;
+
+import org.powermock.reflect.Whitebox;
 
 public class MonitorSiteValidatorForSanitaryDataTest {
 
@@ -42,6 +44,7 @@ public class MonitorSiteValidatorForSanitaryDataTest {
     public void isValidFalseTest() {
         given(value.getBeachSeq()).willReturn("2");
         given(value.getMonitorSiteSeq()).willReturn("79");
+//        given(dao.checkMonitorSite(anyMap())).willReturn((int) 0);
         assertFalse(msv.isValid(value, context));
 
     }
