@@ -16,6 +16,7 @@ public class PercentTypeHandler implements TypeHandler<String> {
     public static final String HIGH = "HIGH";
 
     public static final String N = "None";
+    public static final String Z = "0%";
     public static final String L = "1-20%";
     public static final String M = "21-50%";
     public static final String H = ">50%";
@@ -36,7 +37,7 @@ public class PercentTypeHandler implements TypeHandler<String> {
 
     public String convertParam(String val) {
         if (val == null) return null;
-        if (val.equalsIgnoreCase(N))
+        if (val.equalsIgnoreCase(N) || val.equalsIgnoreCase(Z))
             return NONE;
         else if (val.equalsIgnoreCase(L))
             return LOW;
