@@ -43,11 +43,9 @@ public class SanitaryDataControllerTest {
     private Authentication auth;
     @Mock
     private SecurityContext securityContext;
-//    @Mock
+
     private List<SanitaryData> sd;
-//    @Mock
     private Set<ConstraintViolation<SanitaryData>> errors;
-//    @Mock
     private ConstraintViolation<SanitaryData> err;
 
 

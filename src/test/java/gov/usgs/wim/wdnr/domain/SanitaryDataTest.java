@@ -58,7 +58,6 @@ public class SanitaryDataTest {
     public void setValidationErrorsTest() {
 
         SanitaryData sd = new SanitaryData();
-        //TODO: fix this
         ConstraintViolation<SanitaryData> cvsd = ConstraintViolationImpl.forBeanValidation("x", null, null, null, null, null, null, PathImpl.createPathFromString("x"), null, null, null);
         Set<ConstraintViolation<SanitaryData>> cv = new HashSet<>();
         cv.add(cvsd);

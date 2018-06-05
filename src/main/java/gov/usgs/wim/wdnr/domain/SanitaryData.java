@@ -1379,15 +1379,4 @@ public class SanitaryData {
             validationErrors.setValidationErrors(vResults);
         }
     }
-
-//    public void addValidatorResult(final ValidatorResult inValidatorResult) {
-//        if (null == validationErrors) {
-//            validationErrors = new ValidationResults();
-//        }
-//        validationErrors.addValidatorResult(inValidatorResult);
-//    }
-
-
-
-
 }

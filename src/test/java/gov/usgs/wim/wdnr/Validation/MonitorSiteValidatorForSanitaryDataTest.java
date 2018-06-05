@@ -44,7 +44,6 @@ public class MonitorSiteValidatorForSanitaryDataTest {
     public void isValidFalseTest() {
         given(value.getBeachSeq()).willReturn("2");
         given(value.getMonitorSiteSeq()).willReturn("79");
-//        given(dao.checkMonitorSite(anyMap())).willReturn((int) 0);
         assertFalse(msv.isValid(value, context));
 
     }
