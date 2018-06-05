@@ -36,9 +36,5 @@ public class TestSpringConfig {
 		return ds;
 	}
 
-	@Bean
-	public SanitaryDataDao sanitaryDataDao() {
-		return mock(SanitaryDataDao.class);
-	};
 
 }

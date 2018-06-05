@@ -9,10 +9,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.powermock.reflect.Whitebox;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.validation.ConstraintValidatorContext;
 
@@ -28,7 +26,8 @@ import static org.mockito.Matchers.anyMap;
 
 public class UniqueKeyValidatorForSanitaryDataTest {
 
-    @Autowired
+
+    @Mock
     protected SanitaryDataDao dao;
 
     private UniqueKeyValidatorForSanitaryData ukv;

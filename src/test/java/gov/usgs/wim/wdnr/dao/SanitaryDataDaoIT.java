@@ -124,7 +124,7 @@ public class SanitaryDataDaoIT {
     public void checkZeroBeachSeq() {
 
         Map<String, Object> filters = new HashMap<String, Object>();
-        filters.put("BEACH_SEQ", 119);
+        filters.put("BEACH_SEQ", 5);
         assertEquals((Integer) 0, sanitaryDataDao.checkBeachSeq(filters));
 
     }
@@ -144,8 +144,8 @@ public class SanitaryDataDaoIT {
     public void checkZeroMonitorSite() {
 
         Map<String, Object> filters = new HashMap<String, Object>();
-        filters.put("MONITOR_SITE_SEQ", 134);
-        filters.put("BEACH_SEQ", 119);
+        filters.put("MONITOR_SITE_SEQ", 5);
+        filters.put("BEACH_SEQ", 6);
         assertEquals((Integer) 0, sanitaryDataDao.checkMonitorSite(filters));
 
     }

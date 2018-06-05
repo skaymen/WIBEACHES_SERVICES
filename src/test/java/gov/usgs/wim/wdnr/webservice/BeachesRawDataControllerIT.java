@@ -1,6 +1,7 @@
 package gov.usgs.wim.wdnr.webservice;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DbUnitConfiguration;
 import gov.usgs.wim.wdnr.spring.CsvDataSetLoader;
 import gov.usgs.wim.wdnr.spring.SpringConfig;
@@ -48,12 +49,10 @@ public class BeachesRawDataControllerIT {
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
 
-    public void Test() throws Exception {
-//        MvcResult rtn = mockMvc.perform(getBeachesRawData())
-    }
 
     @Test
-    public void getCorporations() throws Exception {
+    @DatabaseSetup("classpath:/testData/lastUpdate/fromBeachesRaw/")
+    public void getRawData() throws Exception {
         MvcResult rtn = mockMvc.perform(get("/beachesrawdata"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
@@ -64,7 +63,7 @@ public class BeachesRawDataControllerIT {
         assertEquals(1, rtnAsJSONArray.length());
 
         assertThat(rtnAsJSONArray,
-                sameJSONArrayAs(new JSONArray("[{\"id\":2,\"text\":\"US Geological Survey Ice Survey Team\"}]"))
+                sameJSONArrayAs(new JSONArray("[{\"BEACH_SEQ\":\"1\",\"WATER_BODY_TYPE\":\"River\",\"WATERBODY_NAME\":\"Rock\",\"MONITOR_SITE_SEQ\":\"2\",\"BEACH_NAME\":\"First Beach\",\"STATION_NAME\":\"Rockem\",\"COUNTY\":\"Dodge\"}]"))
                         .allowingAnyArrayOrdering());
     }
 
