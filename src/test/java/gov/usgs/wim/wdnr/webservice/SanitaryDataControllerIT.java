@@ -39,6 +39,37 @@ import static uk.co.datumedge.hamcrest.json.SameJSONAs.sameJSONArrayAs;
 @DbUnitConfiguration(dataSetLoader = CsvDataSetLoader.class)
 public class SanitaryDataControllerIT {
 
+    public static final String qry = "select beach_seq,monitor_site_seq," +
+            "ecoli_sample_type,sample_date_time,no_gulls,no_geese,no_dogs," +
+            "no_animals_other,animals_other_desc,num_loons,num_herr_gulls," +
+            "num_ring_gulls,num_cormorants,num_longtail_ducks,num_scoter," +
+            "num_horn_grebe,num_rednecked_grebe,num_dead_fish,num_other," +
+            "num_other_desc,float_street_litter,float_food,float_medical," +
+            "float_sewage,float_bldg_materials,float_fishing,float_other," +
+            "float_other_desc,debris_street_litter,debris_food," +
+            "debris_medical,debris_sewage,debris_bldg_materials," +
+            "debris_fishing,debris_household,debris_tar,debris_oil," +
+            "debris_other,debris_other_desc,debris_amount,no_in_water," +
+            "num_out_of_water,no_people_boating,no_people_fishing," +
+            "no_people_surfing,no_people_windsurfing,no_people_diving," +
+            "no_people_clamming,no_people_other,no_people_other_desc," +
+            "air_temp,air_units,wind_speed,wind_speed_units,wind_dir_degrees," +
+            "wind_dir_desc,weather_desc,rainfall_last_event,rainfall," +
+            "rainfall_units,rainfall_stn_desc,wave_height,wave_height_units," +
+            "est_act_flag,wave_direction,wave_intensity,current_speed," +
+            "longshore_current_units,shoreline_current_dir,ph,color_change," +
+            "color_description,odor_description,odor_other_description," +
+            "avg_water_temp,avg_water_temp_units,clarity_desc,ntu," +
+            "secchi_tube_cm,algae_nearshore,algae_on_beach," +
+            "algae_type_periphyton,algae_type_globular," +
+            "algae_type_freefloating,algae_type_other,algae_type_other_desc," +
+            "algae_color_lt_green,algae_color_brght_green," +
+            "algae_color_drk_green,algae_color_yellow,algae_color_brown," +
+            "algae_color_other,algae_color_other_desc,part_1_comments," +
+            "part2_comments,part3_comments,part4_comments," +
+            "sampler_seq, data_entry_seq from " +
+            "sanitary_data_fact";
+
     private MockMvc mockMvc;
 
     @Autowired
@@ -50,11 +81,12 @@ public class SanitaryDataControllerIT {
     }
 
     @Test
-    @DatabaseSetup("classpath:/testData/postSanitaryData/prePprePost/")
+    @DatabaseSetup("classpath:/testData/lastUpdate/prePost/")
     @ExpectedDatabase(
             table = "sanitary_data_fact",
-            value = "classpath:/testResult/createSanitaryData/",
-            assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED
+            value = "classpath:/postResult/postSanitaryData/",
+            assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED,
+            query = qry
     )
     public void postSanitaryData() throws Exception {
 
@@ -129,7 +161,7 @@ public class SanitaryDataControllerIT {
                 "\"RAINFALL_LAST_EVENT\": \"<72\",\n" +
                 "\"RAINFALL\": \"3\",\n" +
                 "\"RAINFALL_UNITS\": \"IN\",\n" +
-                "\"RAINFALL_STN_DESC\": \"\",\n" +
+                "\"RAINFALL_STN_DESC\": \"NA\",\n" +
                 "\"WEATHER_COMMENTS\": \"\",\n" +
                 "\"WAVE_HEIGHT\": \"1\",\n" +
                 "\"WAVE_HEIGHT_UNITS\": \"FT\",\n" +
@@ -144,7 +176,7 @@ public class SanitaryDataControllerIT {
                 "\"COLOR_CHANGE\": true,\n" +
                 "\"COLOR_DESCRIPTION\": \"pH strip got slightly lighter\",\n" +
                 "\"ODOR_DESCRIPTION\": \"None\",\n" +
-                "\"ODOR_OTHER_DESCRIPTION\": \"\",\n" +
+                "\"ODOR_OTHER_DESCRIPTION\": \"NA\",\n" +
                 "\"AVG_WATER_TEMP\": \"68\",\n" +
                 "\"AVG_WATER_TEMP_UNITS\": \"F\",\n" +
                 "\"CLARITY_DESC\": \"Clear\",\n" +
@@ -166,10 +198,10 @@ public class SanitaryDataControllerIT {
                 "\"ALGAE_COLOR_OTHER\": true,\n" +
                 "\"ALGAE_COLOR_OTHER_DESC\": \"hot pink\",\n" +
                 "\"ALGAE_COMMENTS\": \"\",\n" +
-                "\"PART_1_COMMENTS\": \"\",\n" +
-                "\"PART_2_COMMENTS\": \"\",\n" +
-                "\"PART_3_COMMENTS\": \"\",\n" +
-                "\"PART_4_COMMENTS\": \"\",\n" +
+                "\"PART_1_COMMENTS\": \"NA\",\n" +
+                "\"PART_2_COMMENTS\": \"NA\",\n" +
+                "\"PART_3_COMMENTS\": \"NA\",\n" +
+                "\"PART_4_COMMENTS\": \"NA\",\n" +
                 "\"submitted\": true,\n" +
                 "\"id\": \"811960c6-e107-ebb3-0a99-0fc60f857f72\",\n" +
                 "\"date\": \"2018-04-19T20:30:50.700Z\"\n" +
